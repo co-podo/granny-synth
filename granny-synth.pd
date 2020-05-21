@@ -1,4 +1,4 @@
-#N canvas 2391 -1099 2390 1251 10;
+#N canvas 0 0 1892 963 10;
 #X obj 165 258 soundfiler;
 #X floatatom 165 284 20 0 0 0 - - -, f 20;
 #X floatatom 49 304 5 0 0 0 - - -, f 5;
@@ -15,7 +15,7 @@
 #X msg 43 234 read -maxsize 1.2e+007 -resize \$1 kanalL kanalR;
 #X obj 316 285 expr $f1 / 44100 * 1000;
 #X floatatom 315 309 10 0 0 0 - - -, f 10;
-#X obj 51 326 s sampleRate;
+#X obj 49 326 s sampleRate;
 #X text 78 36 Enable AUdio, f 17;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array kanalL 437579 float 0 black black;
@@ -29,24 +29,24 @@
 #X floatatom 994 1383 15 0 0 0 - - -, f 15;
 #X text 972 1336 GrainPosition in Samples;
 #X obj 1432 643 hsl 211 16 1 10000 1 0 empty empty empty -2 -8 0 10
--262144 -1 -1 7420 1;
-#X floatatom 1431 690 12 0 0 0 - - -, f 12;
-#X text 1459 666 Slider für GrainSize in Millisekunden;
+-262144 -1 -1 12700 1;
+#X floatatom 1434 690 12 0 0 0 - - -, f 12;
+#X text 1412 617 Slider für GrainSize in Millisekunden;
 #X text 805 909 GrainSize in Samples;
-#X text 559 794 Grundfrequenz ist 1 / GrainSize in Sekunden, f 46
+#X text 563 808 Grundfrequenz ist 1 / GrainSize in Sekunden, f 46
 ;
 #X text 1146 1336 Frequenz / Tonhöhe;
-#X obj 1440 729 / 1000;
-#X obj 1426 808 s grainSizeSc;
+#X obj 1433 729 / 1000;
+#X obj 1433 806 s grainSizeSc;
 #X obj 1317 806 s grainSizeMsc;
-#X obj 1555 808 s grainSizeSmp;
-#X obj 318 330 s lengthMsc;
-#X text 47 346 whats this?;
+#X obj 1560 806 s grainSizeSmp;
+#X obj 314 339 s lengthMsc;
+#X text 45 346 whats this?;
 #X obj 1557 764 * 44100;
 #X obj 804 943 r grainSizeSmp, f 16;
-#X obj 973 646 hsl 211 16 0 1 0 1 empty empty empty -2 -8 0 10 -262144
--1 -1 11050 1;
-#X text 1022 679 Slider für relative GrainPosition;
+#X obj 969 636 hsl 211 16 0 1 0 1 empty empty empty -2 -8 0 10 -262144
+-1 -1 11461 1;
+#X text 985 605 Slider für relative GrainPosition;
 #X obj 970 724 *;
 #X obj 1022 698 r sampleSize;
 #X obj 177 151 bng 52 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -57,20 +57,20 @@
 #X obj 1039 765 / 44100;
 #X obj 979 1366 r grainPosSmp, f 17;
 #X obj 517 616 hsl 240 27 -3 3 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 16233 1;
-#X obj 736 713 r grainSizeSc;
+-1 -1 20133 1;
+#X obj 734 718 r grainSizeSc;
 #X obj 618 765 expr 1 / $f1;
-#X obj 616 1375 bng 60 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 623 1375 bng 60 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X text 621 1338 play;
-#X floatatom 688 856 12 0 0 0 - - -, f 12;
-#X floatatom 736 742 5 0 0 0 - - -, f 5;
-#X obj 539 726 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X text 623 1353 play;
+#X floatatom 625 780 12 0 0 0 - - -, f 12;
+#X floatatom 734 749 5 0 0 0 - - -, f 5;
+#X obj 539 735 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X text 859 2155 comment;
 #X obj 630 1886 *~;
-#X obj 1345 1594 vsl 23 257 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 2500 1;
+#X obj 1781 587 vsl 23 257 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 5400 1;
 #X obj 948 1947 env~;
 #X obj 948 1971 - 100;
 #X obj 1351 2009 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
@@ -78,10 +78,10 @@
 #X obj 517 773 *;
 #X msg 519 592 1;
 #X obj 522 568 loadbang;
-#X floatatom 701 650 10 0 0 0 - - -, f 10;
-#X text 611 674 Relativ zur Grundfrequenz;
-#X msg 1432 618 50;
-#X obj 1431 592 loadbang;
+#X floatatom 703 643 10 0 0 0 - - -, f 10;
+#X text 607 580 Relativ zur Grundfrequenz;
+#X msg 1648 626 50;
+#X obj 1647 600 loadbang;
 #X obj 1131 1502 f;
 #X obj 965 1504 f;
 #X obj 795 1502 f, f 1;
@@ -90,7 +90,7 @@
 #X msg 964 1528 this \$1;
 #X obj 1148 1366 r speed, f 12;
 #X obj 550 842 s speed;
-#X floatatom 462 843 12 0 0 0 - - -, f 12;
+#X floatatom 466 790 12 0 0 0 - - -, f 12;
 #X obj 623 1442 t b b b b, f 86;
 #X floatatom 1165 1384 10 0 0 0 - - -, f 10;
 #X obj 1042 1645 vline~;
@@ -98,18 +98,24 @@
 #X msg 1113 1614 0 0 0;
 #X msg 1040 1615 1 \$1 0, f 10;
 #X floatatom 1190 1574 9 0 0 0 - - -, f 9;
-#X obj 615 1248 tgl 69 0 empty empty empty 17 7 0 10 -262144 -1 -1
-0 1;
+#X obj 693 1376 tgl 60 0 empty empty empty 17 7 0 10 -262144 -1 -1
+1 1;
 #X msg 1131 1525 next \$1;
 #X msg 624 1528 this \$1;
 #X obj 1042 1473 t b b, f 15;
-#X text 612 1217 toggle loop;
+#X text 693 1352 toggle loop;
 #X floatatom 1204 1531 5 0 0 0 - - -, f 5;
-#X obj 1067 1556 expr 1 / abs($f1) * 1000 / 2;
 #X obj 1085 1718 edge~, f 7;
 #X obj 1044 1671 expr~ $v1 == 1;
 #X obj 1046 1694 spigot~;
-#X obj 628 1845 clone grain 50, f 85;
+#X obj 966 505 phasor~;
+#X floatatom 1018 551 10 0 0 0 - - -, f 10;
+#X obj 966 453 r sampleRate;
+#X obj 628 1845 clone grain 100, f 85;
+#X obj 1067 1556 expr 1 / abs($f1) * 1000 / 2;
+#X text 1038 517 is this really bad for perfomance?, f 20;
+#X obj 966 533 unsig~ 0.1;
+#X obj 966 479 expr abs($f1);
 #X connect 0 0 1 0;
 #X connect 0 0 3 0;
 #X connect 0 0 12 0;
@@ -131,8 +137,8 @@
 #X connect 34 0 18 0;
 #X connect 34 0 69 1;
 #X connect 35 0 37 0;
-#X connect 37 0 41 0;
 #X connect 37 0 43 0;
+#X connect 37 0 41 0;
 #X connect 38 0 37 1;
 #X connect 39 0 0 0;
 #X connect 43 0 42 0;
@@ -163,31 +169,36 @@
 #X connect 66 0 65 0;
 #X connect 67 0 84 0;
 #X connect 67 0 88 0;
-#X connect 67 0 89 0;
+#X connect 67 0 96 0;
 #X connect 68 0 72 0;
 #X connect 69 0 71 0;
 #X connect 70 0 85 0;
-#X connect 71 0 93 1;
-#X connect 72 0 93 2;
+#X connect 71 0 95 1;
+#X connect 72 0 95 2;
 #X connect 73 0 67 1;
 #X connect 73 0 77 0;
 #X connect 76 0 70 0;
 #X connect 76 1 69 0;
 #X connect 76 2 68 0;
 #X connect 76 3 86 0;
-#X connect 78 0 91 0;
+#X connect 78 0 90 0;
 #X connect 79 0 81 0;
 #X connect 80 0 78 0;
 #X connect 81 0 78 0;
-#X connect 83 0 92 1;
-#X connect 84 0 93 3;
-#X connect 85 0 93 0;
+#X connect 83 0 91 1;
+#X connect 84 0 95 3;
+#X connect 85 0 95 0;
 #X connect 86 0 79 0;
 #X connect 86 1 67 0;
-#X connect 89 0 79 1;
-#X connect 89 0 82 0;
-#X connect 90 0 80 0;
-#X connect 90 0 76 0;
-#X connect 91 0 92 0;
-#X connect 92 1 90 0;
-#X connect 93 0 54 0;
+#X connect 89 0 80 0;
+#X connect 89 0 76 0;
+#X connect 90 0 91 0;
+#X connect 91 1 89 0;
+#X connect 92 0 98 0;
+#X connect 94 0 99 0;
+#X connect 95 0 54 0;
+#X connect 96 0 79 1;
+#X connect 96 0 82 0;
+#X connect 98 0 93 0;
+#X connect 98 0 35 0;
+#X connect 99 0 92 0;
