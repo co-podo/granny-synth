@@ -1,4 +1,4 @@
-#N canvas 0 0 1892 963 10;
+#N canvas 2391 -1099 2390 1251 10;
 #X obj 165 258 soundfiler;
 #X floatatom 165 284 20 0 0 0 - - -, f 20;
 #X floatatom 49 304 5 0 0 0 - - -, f 5;
@@ -25,14 +25,14 @@
 #X array kanalR 437579 float 0 black black;
 #X coords 0 1 437578 -1 200 140 1;
 #X restore 1381 202 graph;
-#X floatatom 819 960 14 0 0 0 - - -, f 14;
+#X floatatom 818 1389 14 0 0 0 - - -, f 14;
 #X floatatom 994 1383 15 0 0 0 - - -, f 15;
 #X text 972 1336 GrainPosition in Samples;
 #X obj 1432 643 hsl 211 16 1 10000 1 0 empty empty empty -2 -8 0 10
--262144 -1 -1 12700 1;
+-262144 -1 -1 9420 1;
 #X floatatom 1434 690 12 0 0 0 - - -, f 12;
 #X text 1412 617 Slider für GrainSize in Millisekunden;
-#X text 805 909 GrainSize in Samples;
+#X text 804 1338 GrainSize in Samples;
 #X text 563 808 Grundfrequenz ist 1 / GrainSize in Sekunden, f 46
 ;
 #X text 1146 1336 Frequenz / Tonhöhe;
@@ -43,9 +43,9 @@
 #X obj 314 339 s lengthMsc;
 #X text 45 346 whats this?;
 #X obj 1557 764 * 44100;
-#X obj 804 943 r grainSizeSmp, f 16;
+#X obj 803 1372 r grainSizeSmp, f 16;
 #X obj 969 636 hsl 211 16 0 1 0 1 empty empty empty -2 -8 0 10 -262144
--1 -1 11461 1;
+-1 -1 5850 1;
 #X text 985 605 Slider für relative GrainPosition;
 #X obj 970 724 *;
 #X obj 1022 698 r sampleSize;
@@ -56,30 +56,30 @@
 #X obj 1039 803 s grainPosSc;
 #X obj 1039 765 / 44100;
 #X obj 979 1366 r grainPosSmp, f 17;
-#X obj 517 616 hsl 240 27 -3 3 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 20133 1;
+#X obj 421 665 hsl 240 27 -3 3 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 20050 1;
 #X obj 734 718 r grainSizeSc;
 #X obj 618 765 expr 1 / $f1;
 #X obj 623 1375 bng 60 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X text 623 1353 play;
+#X text 622 1341 play;
 #X floatatom 625 780 12 0 0 0 - - -, f 12;
 #X floatatom 734 749 5 0 0 0 - - -, f 5;
 #X obj 539 735 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X text 859 2155 comment;
-#X obj 630 1886 *~;
+#X obj 628 1916 *~;
 #X obj 1781 587 vsl 23 257 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 5400 1;
+-1 -1 12300 1;
 #X obj 948 1947 env~;
 #X obj 948 1971 - 100;
 #X obj 1351 2009 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
-#X obj 629 1982 dac~;
+#X obj 627 2012 dac~;
 #X obj 517 773 *;
-#X msg 519 592 1;
-#X obj 522 568 loadbang;
-#X floatatom 703 643 10 0 0 0 - - -, f 10;
-#X text 607 580 Relativ zur Grundfrequenz;
+#X msg 423 641 1;
+#X obj 426 617 loadbang;
+#X floatatom 607 692 10 0 0 0 - - -, f 10;
+#X text 511 629 Relativ zur Grundfrequenz;
 #X msg 1648 626 50;
 #X obj 1647 600 loadbang;
 #X obj 1131 1502 f;
@@ -100,22 +100,97 @@
 #X floatatom 1190 1574 9 0 0 0 - - -, f 9;
 #X obj 693 1376 tgl 60 0 empty empty empty 17 7 0 10 -262144 -1 -1
 1 1;
-#X msg 1131 1525 next \$1;
+#X msg 1135 1755 next \$1;
 #X msg 624 1528 this \$1;
 #X obj 1042 1473 t b b, f 15;
-#X text 693 1352 toggle loop;
-#X floatatom 1204 1531 5 0 0 0 - - -, f 5;
+#X text 691 1340 toggle loop;
+#X floatatom 1157 1518 5 0 0 0 - - -, f 5;
 #X obj 1085 1718 edge~, f 7;
 #X obj 1044 1671 expr~ $v1 == 1;
 #X obj 1046 1694 spigot~;
-#X obj 966 505 phasor~;
+#X obj 962 497 phasor~;
 #X floatatom 1018 551 10 0 0 0 - - -, f 10;
-#X obj 966 453 r sampleRate;
+#X obj 958 373 r sampleRate;
 #X obj 628 1845 clone grain 100, f 85;
 #X obj 1067 1556 expr 1 / abs($f1) * 1000 / 2;
 #X text 1038 517 is this really bad for perfomance?, f 20;
 #X obj 966 533 unsig~ 0.1;
-#X obj 966 479 expr abs($f1);
+#X obj 958 399 expr abs($f1);
+#X obj 2702 538 vline~, f 7;
+#X msg 2476 503 0 0 0;
+#X msg 2564 500 \$1 0 0;
+#X text 2611 499 start position;
+#X text 1164 1609 triggers another grain after the initial grain is
+halfway through, f 45;
+#X obj 1781 860 s amplitude;
+#X msg 1779 562 0;
+#X obj 1779 539 loadbang;
+#X obj 641 1890 r amplitude;
+#X obj 2702 563 unsig~;
+#X floatatom 2740 581 5 0 0 0 - - -, f 5;
+#X obj 2714 279 hsl 211 16 0 1 0 1 empty empty empty -2 -8 0 10 -262144
+-1 -1 5530 1;
+#X obj 2546 433 f;
+#X obj 2716 298 hsl 211 16 0 1 0 1 empty empty empty -2 -8 0 10 -262144
+-1 -1 14930 1;
+#X obj 2701 416 f;
+#X obj 2571 148 bng 59 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 2575 233 t b b;
+#X obj 2751 341 r sampleRate;
+#X obj 2751 366 expr 1000 / $f1;
+#X floatatom 2844 383 16 0 0 0 - - -, f 16;
+#X obj 1174 394 hsl 211 16 -10 10 0 1 empty empty empty -2 -8 0 10
+-262144 -1 -1 11450 1;
+#X floatatom 1174 418 5 0 0 0 - - -, f 5;
+#X msg 2702 499 §1 \$2 0;
+#X obj 2705 166 pack f f;
+#X msg 2706 77 3;
+#X obj 2706 115 f;
+#X obj 2764 108 f;
+#X obj 2602 33 bng 31 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 1159 1653 A 'density' value could control this value (e.g.
+'brige' grains start earlier);
+#X msg 1173 364 1;
+#X obj 2632 86 t b b b;
+#X msg 2769 72 43, f 4;
+#X obj 2708 203 print $f2 $f2;
+#X text 2757 497 ramp to end position;
+#X obj 2701 454 pack f f;
+#X text 2834 451 speed;
+#X obj 2750 419 *;
+#X msg 897 443 0;
+#X obj 959 443 *;
+#X floatatom 992 469 5 0 0 0 - - -, f 5;
+#X obj 786 374 bng 46 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 2524 610 use vline~ to play through the grains instead of phasor~?
+;
+#X obj 900 372 bng 46 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 800 354 start;
+#X text 919 352 stop;
+#X obj 793 497 s startStop;
+#X obj 691 1357 r startStop;
+#X obj 859 93 mtof;
+#X obj 774 -124 notein;
+#X floatatom 824 -67 5 0 0 0 - - -, f 5;
+#X obj 768 93 bng 33 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 936 89 bng 36 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 778 75 noteon;
+#X text 945 70 noteoff;
+#X obj 930 -30 select 0;
+#X floatatom 774 -68 5 0 0 0 - - -, f 5;
+#X obj 775 -21 stripnote;
+#X floatatom 833 -4 5 0 0 0 - - -, f 5;
+#X floatatom 1027 -1 5 0 0 0 - - -, f 5;
+#X text 862 73 pitch;
+#X obj 1172 340 loadbang;
+#X floatatom 859 133 10 0 0 0 - - -, f 10;
+#X text 998 127 midi stuff, f 12;
 #X connect 0 0 1 0;
 #X connect 0 0 3 0;
 #X connect 0 0 12 0;
@@ -158,7 +233,7 @@
 #X connect 54 0 59 0;
 #X connect 54 0 59 1;
 #X connect 54 0 56 0;
-#X connect 55 0 54 1;
+#X connect 55 0 105 0;
 #X connect 56 0 57 0;
 #X connect 57 0 58 0;
 #X connect 60 0 74 0;
@@ -201,4 +276,55 @@
 #X connect 96 0 82 0;
 #X connect 98 0 93 0;
 #X connect 98 0 35 0;
-#X connect 99 0 92 0;
+#X connect 99 0 138 1;
+#X connect 100 0 109 0;
+#X connect 101 0 100 0;
+#X connect 102 0 100 0;
+#X connect 106 0 55 0;
+#X connect 107 0 106 0;
+#X connect 108 0 54 1;
+#X connect 109 0 110 0;
+#X connect 111 0 112 1;
+#X connect 112 0 102 0;
+#X connect 113 0 114 1;
+#X connect 114 0 134 0;
+#X connect 115 0 116 0;
+#X connect 116 0 114 0;
+#X connect 116 1 112 0;
+#X connect 117 0 118 0;
+#X connect 118 0 119 0;
+#X connect 118 0 136 0;
+#X connect 120 0 121 0;
+#X connect 120 0 138 0;
+#X connect 122 0 100 0;
+#X connect 123 0 132 0;
+#X connect 124 0 125 0;
+#X connect 125 0 123 0;
+#X connect 126 0 123 1;
+#X connect 127 0 130 0;
+#X connect 129 0 120 0;
+#X connect 131 0 126 0;
+#X connect 136 0 134 1;
+#X connect 137 0 92 0;
+#X connect 137 0 92 1;
+#X connect 137 0 145 0;
+#X connect 138 0 92 0;
+#X connect 138 0 139 0;
+#X connect 140 0 138 0;
+#X connect 140 0 145 0;
+#X connect 142 0 137 0;
+#X connect 146 0 83 0;
+#X connect 147 0 161 0;
+#X connect 148 0 155 0;
+#X connect 148 1 149 0;
+#X connect 149 0 156 1;
+#X connect 149 0 154 0;
+#X connect 150 0 140 0;
+#X connect 151 0 142 0;
+#X connect 154 0 151 0;
+#X connect 154 1 158 0;
+#X connect 155 0 156 0;
+#X connect 156 0 150 0;
+#X connect 156 0 147 0;
+#X connect 156 1 157 0;
+#X connect 160 0 129 0;

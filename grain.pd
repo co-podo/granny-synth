@@ -65,7 +65,7 @@ Zielposition vertauscht;
 #X obj 180 135 t b b b b b b, f 131;
 #X obj 347 1012 *~;
 #N canvas 0 0 450 300 (subpatch) 0;
-#X array hanning 255 float 1 black black;
+#X array \$0-hanning 255 float 1 black black;
 #A 0 0 0.0133333 0.0266667 0.0366667 0.0533333 0.06 0.09 0.133333 0.15
 0.173333 0.216667 0.256667 0.293333 0.313333 0.346667 0.393333 0.42
 0.433333 0.45 0.463333 0.51 0.526667 0.543333 0.56 0.59 0.61 0.62 0.633333
@@ -100,7 +100,7 @@ Zielposition vertauscht;
 #X obj 492 1009 vline~;
 #X msg 501 963 255 \$1 0;
 #X obj 554 903 f;
-#X obj 478 1046 tabread4~ hanning;
+#X obj 477 1046 tabread4~ \$0-hanning;
 #X connect 4 0 36 0;
 #X connect 4 0 40 0;
 #X connect 6 0 13 0;
