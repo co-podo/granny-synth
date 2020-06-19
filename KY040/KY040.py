@@ -9,13 +9,17 @@ Additional code added by Conrad Storz 2015 and 2016
 
 import RPi.GPIO as GPIO
 from time import sleep
+import os, time
+from pythonosc import udp_client
+import argparse
+
 
 
 class KY040:
 
     CLOCKWISE = 0
     ANTICLOCKWISE = 1
-    DEBOUNCE = 12
+    DEBOUNCE = 50
 
     def __init__(self, clockPin, dataPin, switchPin, rotaryCallback, switchCallback):
         #persist values
@@ -40,7 +44,8 @@ class KY040:
     
     def _clockCallback(self, pin):
         if GPIO.input(self.clockPin) == 0:
-            self.rotaryCallback(GPIO.input(self.dataPin))
+#         self.rotaryCallback()
+            self.rotaryCallback(GPIO.input(self.dataPin), self.clockPin)
         """
             data = GPIO.input(self.dataPin)
             if data == 1:
@@ -62,22 +67,41 @@ class KY040:
 if __name__ == "__main__":
 
     print ('Program start.')
+    # Init OSC
 
-    CLOCKPIN = 27
-    DATAPIN = 22
-    SWITCHPIN = 17
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--ip", default="127.0.0.1",
+    help="The ip of the OSC server")
+    parser.add_argument("--port", type=int, default=5005,
+    help="The port the OSC server is listening on")
+    args = parser.parse_args()
 
-    def rotaryChange(direction):
+    client = udp_client.SimpleUDPClient(args.ip, args.port)
+
+    CLOCKPIN = 4                                        
+    DATAPIN = 17
+    SWITCHPIN = 27 
+    
+    CLOCKPIN1 = 22
+    DATAPIN1 = 5
+    SWITCHPIN1 = 6
+
+    def rotaryChange(direction, clockpin):
         print ("turned - " + str(direction))
+        print ("pin moved - " + str(clockpin))
+        client.send_message("/rotation", direction)
+        client.send_message("/button", clockpin)
     def switchPressed(pin):
         print ("button connected to pin:{} pressed".format(pin))
 
     GPIO.setmode(GPIO.BCM)
-    ky040 = KY040(CLOCKPIN, DATAPIN, SWITCHPIN, rotaryChange, switchPressed)
+    button0 = KY040(CLOCKPIN, DATAPIN, SWITCHPIN, rotaryChange, switchPressed)
+    button1 = KY040(CLOCKPIN1, DATAPIN1, SWITCHPIN1, rotaryChange, switchPressed)
 
     print ('Launch switch monitor class.')
 
-    ky040.start()
+    button0.start()
+    button1.start()
     print ('Start program loop...')
     try:
         while True:
@@ -85,7 +109,8 @@ if __name__ == "__main__":
             print ('Ten seconds...')
     finally:
         print ('Stopping GPIO monitoring...')
-        ky040.stop()
+        button0.stop()
+        button1.stop()
         GPIO.cleanup()
         print ('Program ended.')
 
