@@ -1,0 +1,25 @@
+#N canvas 55 211 648 300 12;
+#X obj 447 57 osc~ 432;
+#X obj 474 147 *~;
+#X obj 565 49 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 5100 1;
+#X obj 477 200 dac~;
+#X obj 54 190 print;
+#X obj 49 40 udpreceive 5005;
+#X obj 54 102 unpackOSC;
+#X obj 61 139 routeOSC /rotation;
+#X obj 269 157 moses 1;
+#X obj 330 187 + 220;
+#X obj 341 228 + 330;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 1 0 3 1;
+#X connect 2 0 1 1;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 4 0;
+#X connect 7 0 8 0;
+#X connect 8 0 10 0;
+#X connect 8 1 9 0;
+#X connect 9 0 0 0;
+#X connect 10 0 0 0;
