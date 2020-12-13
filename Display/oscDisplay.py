@@ -15,7 +15,16 @@ import argparse
 from time import sleep, strftime
 from datetime import datetime
 
+def print_handler(address, *args):
+    print(f"{address}: {args}")
+    lcd.setCursor(0,0)  # set cursor position
+    lcd.message( f"{address} : " )# display CPU temperature
+    lcd.message( f"{args}" )   # display the time
+    
+    
 
+def default_handler(address, *args):
+    print(f"DEFAULT {address}: {args}")
  
 def get_cpu_temp():     # get CPU temperature and store it into file "/sys/class/thermal/thermal_zone0/temp"
     tmp = open('/sys/class/thermal/thermal_zone0/temp')
@@ -27,12 +36,11 @@ def get_time_now():     # get system time
     return datetime.now().strftime('    %H:%M:%S')
     
 def loop():
-    mcp.output(3,1)     # turn on LCD backlight
-    lcd.begin(16,2)     # set number of LCD lines and columns
+         # set number of LCD lines and columns
     while(True):         
-        #lcd.clear()
+        #lcd.clear() 
         lcd.setCursor(0,0)  # set cursor position
-        lcd.message( 'CPU: ' + get_cpu_temp()+'\n' )# display CPU temperature
+        lcd.message( 'CPU:' )# display CPU temperature
         lcd.message( get_time_now() )   # display the time
         sleep(1)
         
@@ -51,31 +59,32 @@ except:
         print ('I2C Address Error !')
         exit(1)
 # Create LCD, passing in MCP GPIO adapter.
-lcd = Adafruit_CharLCD(pin_rs=0, pin_e=2, pins_db=[4,5,6,7], GPIO=mcp)
+
 
 if __name__ == '__main__':
     
-    print ('Program is starting ... ')
-    def print_handler(address, *args):
-        print(f"{address}: {args}")
-
-
-    def default_handler(address, *args):
-        print(f"DEFAULT {address}: {args}")
-
-
+#     print ('Program is starting ... ')
+#     print ('Program started! ')
+    lcd = Adafruit_CharLCD(pin_rs=0, pin_e=2, pins_db=[4,5,6,7], GPIO=mcp)
+    mcp.output(3,1)     # turn on LCD backlight
+    lcd.begin(16,2)
+# 
+# 
     dispatcher = Dispatcher()
-    dispatcher.map("/something/*", print_handler)
+    dispatcher.map("/filter/*", print_handler)
     dispatcher.set_default_handler(default_handler)
-
+# 
     ip = "127.0.0.1"
     port = 1337
 
     server = BlockingOSCUDPServer((ip, port), dispatcher)
-    server.serve_forever() 
+    
     
     try:
-        loop()
+        
+        server.serve_forever() 
+        ##loop()
+        
     except KeyboardInterrupt:
         destroy()
 
