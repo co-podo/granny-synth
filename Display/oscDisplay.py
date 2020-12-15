@@ -16,10 +16,14 @@ from time import sleep, strftime
 from datetime import datetime
 
 def print_handler(address, *args):
-    print(f"{address}: {args}")
-    lcd.setCursor(0,0)  # set cursor position
-    lcd.message( f"{address} : " )# display CPU temperature
-    lcd.message( f"{args}" )   # display the time
+    
+    parameter = address.strip("/")
+
+    print(f"{parameter}: {args}")
+    lcd.setCursor(0,0)  # set cursor to first lane
+    lcd.message( f"{parameter}" ) #display current parameter
+    lcd.setCursor(0,1) # set cursor to second lane
+    lcd.message( f"{args[0]}" ) 
     
     
 
@@ -69,11 +73,13 @@ if __name__ == '__main__':
     mcp.output(3,1)     # turn on LCD backlight
     lcd.begin(16,2)
 # 
-# 
+#
+    parameter = "default"
     dispatcher = Dispatcher()
     dispatcher.map("/filter/*", print_handler)
     dispatcher.set_default_handler(default_handler)
-# 
+#
+    
     ip = "127.0.0.1"
     port = 1337
 
