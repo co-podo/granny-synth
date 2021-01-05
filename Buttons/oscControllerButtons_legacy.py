@@ -83,24 +83,25 @@ if __name__ == "__main__":
     
 
 
-    CLOCKPIN = 4
-    CLOCKPIN1 = 17
-    CLOCKPIN2 = 27
-    CLOCKPIN3 = 22
-    CLOCKPIN4 = 5
+    CLOCKPIN = 4                                        
+    DATAPIN = 17
+    SWITCHPIN = 27 
     
+    CLOCKPIN1 = 22
+    DATAPIN1 = 5
+    SWITCHPIN1 = 6
     
-    DATAPIN = 6
-    DATAPIN1 = 13
+    CLOCKPIN2 = 13 
     DATAPIN2 = 19
-    DATAPIN3 = 26
-    DATAPIN4 = 21
+    SWITCHPIN2 = 26
     
-    SWITCHPIN = 20 
-    SWITCHPIN1 = 16
-    SWITCHPIN2 = 12
-    SWITCHPIN3 = 25
-    SWITCHPIN4 = 24
+    CLOCKPIN3 = 16
+    DATAPIN3 = 20
+    SWITCHPIN3 = 21
+     
+    CLOCKPIN4 = 23
+    DATAPIN4 = 24
+    SWITCHPIN4 = 25
     
 
     def rotaryChange(direction, clockpin):
