@@ -1,0 +1,15 @@
+#N canvas 511 279 450 323 10;
+#X obj 52 26 inlet~;
+#X obj 52 183 outlet;
+#X obj 52 146 edge~;
+#X obj 52 81 samphold~;
+#X obj 52 117 expr~ $v1 < $v2, f 33;
+#X text 181 26 bang when input signal deacreases in value (as "phasor~"
+does each period), f 39;
+#X text 276 183 Codrin Podoleanu 2021;
+#X connect 0 0 3 0;
+#X connect 0 0 3 1;
+#X connect 0 0 4 1;
+#X connect 2 0 1 0;
+#X connect 3 0 4 0;
+#X connect 4 0 2 0;
