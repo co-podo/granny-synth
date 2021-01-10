@@ -20,16 +20,20 @@ client = udp_client.SimpleUDPClient(args.ip, args.port)
 #     time.sleep(1)
 
 def readVolume():
-    value = os.popen("amixer get PCM|grep -o [0-9]*%|sed 's/%//'").read()
-    return int(value)
-def rotaryChange(direction):
+   value = os.popen("amixer get PCM|grep -o [0-9]*%|sed 's/%//'").read()
+   return int(value)
+def rotaryChange(self):
     try:    
-	    client.send_message("/rotation", direction)
+        client.send_message("/rotation", direction)
+        client.send_message("/button", CLOCKPIN)
+        print (CLOCKPIN)
+        print (direction)
+        print (self.dataPin)
     except:
-	    print ("not connected")
+        print (self)
 
 def switchPressed(SWITCHPIN):
-     print ("button pressed")
+     print (SWITCHPIN , "button pressed")
 
 
  
@@ -65,6 +69,9 @@ if __name__ == "__main__":
     button2 = KY040(CLOCKPIN2, DATAPIN2, SWITCHPIN2, rotaryChange, switchPressed)
     button3 = KY040(CLOCKPIN3, DATAPIN3, SWITCHPIN3, rotaryChange, switchPressed)
     button4 = KY040(CLOCKPIN4, DATAPIN4, SWITCHPIN4, rotaryChange, switchPressed)
+
+    button0 = KY040(CLOCKPIN, DATAPIN, SWITCHPIN, rotaryChange, switchPressed)
+    button1 = KY040(CLOCKPIN1, DATAPIN1, SWITCHPIN1, rotaryChange, switchPressed)
  
     button0.start()
     button1.start()
