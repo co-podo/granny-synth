@@ -6,10 +6,10 @@ stuffaboutcode.com
 
 Additional code added by Conrad Storz 2015 and 2016
 """
-
+from PCF8574 import PCF8574_GPIO
+from Adafruit_LCD1602 import Adafruit_CharLCD
 import RPi.GPIO as GPIO
 from time import *
-import lcddriver
 import os, time
 from pythonosc import udp_client
 from pythonosc.dispatcher import Dispatcher
@@ -22,7 +22,7 @@ class KY040:
 
     CLOCKWISE = 0
     ANTICLOCKWISE = 1
-    DEBOUNCE = 50
+    DEBOUNCE = 250
 
     def __init__(self, clockPin, dataPin, switchPin, rotaryCallback, switchCallback):
         #persist values
@@ -65,6 +65,19 @@ class KY040:
             self.switchCallback()
         """
         self.switchCallback()
+        
+PCF8574_address = 0x27  # I2C address of the PCF8574 chip.
+PCF8574A_address = 0x3F  # I2C address of the PCF8574A chip.
+# Create PCF8574 GPIO adapter.
+try:
+    mcp = PCF8574_GPIO(PCF8574_address)
+except:
+    try:
+        mcp = PCF8574_GPIO(PCF8574A_address)
+    except:
+        print ('I2C Address Error !')
+        exit(1)
+# Create LCD, passing in MCP GPIO adapter.
 
 #test
 if __name__ == "__main__":
@@ -86,11 +99,13 @@ if __name__ == "__main__":
     
 # lcd setup
 
-    lcd = lcddriver.lcd()
-    lcd.lcd_clear()
- 
-    lcd.lcd_display_string("WELCOME TO ", 1)
-    lcd.lcd_display_string("       GrannySynth     ", 3))
+    lcd = Adafruit_CharLCD(pin_rs=0, pin_e=2, pins_db=[4,5,6,7], GPIO=mcp)
+    mcp.output(3,1)     # turn on LCD backlight
+    lcd.begin(20,4)
+    lcd.setCursor(0,0)  # set cursor to first lane
+    lcd.message( "Hello Soundnerd" ) #display current parameter
+    lcd.setCursor(0,1) # set cursor to second lane
+    lcd.message( "GRAINZZZ" ) 
 
     CLOCKPIN = 4
     CLOCKPIN1 = 17
@@ -115,11 +130,22 @@ if __name__ == "__main__":
     def rotaryChange(direction, clockpin):
         print ("turned - " + str(direction))
         print ("pin moved - " + str(clockpin))
-        lcd.lcd_display_string("turned - " + str(direction))
+        lcd.clear();
+        lcd.setCursor(0,0)  # set cursor to first lane
+        lcd.message( "0123456789 123456789" )
+        lcd.setCursor(0,1)
+        lcd.message( "filter")
+        lcd.setCursor(0,2)
+        lcd.message( "val")
+        lcd.setCursor(0,3)
+        lcd.message(str(direction))
+        
         client.send_message("/rotation", direction)
         client.send_message("/button", clockpin)
     def switchPressed(pin):
         print ("button connected to pin:{} pressed".format(pin))
+        
+
 
     GPIO.setmode(GPIO.BCM)
     button0 = KY040(CLOCKPIN, DATAPIN, SWITCHPIN, rotaryChange, switchPressed)
