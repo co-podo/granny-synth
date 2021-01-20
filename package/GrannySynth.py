@@ -1,23 +1,44 @@
 class GrannySynth:
-    def __init__(self):
-        self.currentState = None
+    def __init__(self, grannyStates = [None, None, None, None], defaultState = None):
+        self.grannyStates = grannyStates
+        self.currentState = defaultState
 
-    def pressButton(self, buttonNumber):
-        newState = self.buttons[buttonNumber].heldState
-        self.currentState = newState
+    def pressKnob(self, knobIndex):
+        if (knobIndex == 4):
+            self.pressSpecial()
+        else:
+            knob = self.knobs[knobIndex]
+            knob.press()
 
-        print("state > " + self.currentState.name)
         # change parameter names and values in display
 
-    def rotateButton(self, buttonNumber, direction):
-        button = self.buttons[buttonNumber]
-        button.rotate(direction)
+    def rotateKnob(self, knobIndex, direction):
+        if (knobIndex == 4):
+            self.rotateStates(direction)
+        else:
+            knob = self.knobs[knobIndex]
+            knob.rotate(direction)
         # change parameter value in display
 
     @property
-    def buttons(self):
-        return self.currentState.buttons
+    def parameters(self):
+        params = {}
+        for state in self.grannyStates:
+            params[state.name] = state.parameters
+        return params
 
-    @buttons.setter
-    def buttons(self, b):
-        self.currentState.buttons = b
+    @property
+    def knobs(self):
+        return self.currentState.knobs
+
+    def rotateStates(self, direction):
+        i = self.grannyStates.index(self.currentState)
+        length = len(self.grannyStates)
+
+        if direction == 0:
+            self.currentState = self.grannyStates[(length + (i - 1)) % length]
+        else:
+            self.currentState = self.grannyStates[(length + (i + 1)) % length]
+
+    def pressSpecial(self)
+        pass
