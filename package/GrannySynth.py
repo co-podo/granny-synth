@@ -40,5 +40,5 @@ class GrannySynth:
         else:
             self.currentState = self.grannyStates[(length + (i + 1)) % length]
 
-    def pressSpecial(self)
+    def pressSpecial(self):
         pass
