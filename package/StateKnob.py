@@ -1,22 +1,20 @@
 from package.GrannyKnob import GrannyKnob
 class StateKnob(GrannyKnob):
-    def __init__(self, paramName, defaultVal, paramStates = []):
-        super().__init__(paramName, defaultVal)
+    def __init__(self, paramName, defaultVal, rotateCallbacks = [], pressCallbacks = [], paramStates = []):
+        super().__init__(paramName, defaultVal, rotateCallbacks, pressCallbacks)
         self.paramStates = paramStates
+        self.stateIndex = paramStates.index(defaultVal)
 
     def rotate(self, direction):
-        super().rotate(direction)
-
-        i = self.paramStates.index(self.value)
         length = len(self.paramStates)
 
         if direction == 0:
-            self.value = self.paramStates[(length + (i - 1)) % length]
+            self.stateIndex = (length + (self.stateIndex - 1)) % length
         else:
-            self.value = self.paramStates[(length + (i + 1)) % length]
-
-        print(self.paramName + ": " + str(self.value))
-
+            self.stateIndex = (length + (self.stateIndex + 1)) % length
+        self.value = self.paramStates[self.stateIndex]
+        
+        super().rotate(direction)
         return self.value
         # rotate
 

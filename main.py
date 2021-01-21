@@ -2,6 +2,7 @@ from package.GrannyFactory import GrannyFactory
 from package.GrannyState import GrannyState
 from package.FloatKnob import FloatKnob
 from package.StateKnob import StateKnob
+from package.LoadKnob import LoadKnob
 from package.GrannySynth import GrannySynth
 
 from package.util import clamp
@@ -127,20 +128,34 @@ def changeVal(baseVal, increment):
 # baseVal = changeVal(baseVal, +6)
 # baseVal = changeVal(baseVal, -0.1)
 testState = GrannyState("testState", [
-    FloatKnob("freq", 440, [], [], 0, 10000, 100, 10, "linear"),
-    FloatKnob("resonance", 440, [], [], 0, 10000, 100, 10, "linear"),
-    FloatKnob("grainLength", 440, [], [], 0, 10000, 100, 10, "linear"),
-    StateKnob("type", "lowpass", ["lowpass", "highpass", "bandpass", "notch"])
+    FloatKnob("freq", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
+    FloatKnob("resonance", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
+    FloatKnob("grainLength", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
+    StateKnob("type", "lowpass", [], [], ["lowpass", "highpass", "bandpass", "notch"])
 ])
 
 testState2 = GrannyState("testState2", [
-    FloatKnob("freq", 440, [], [], 0, 10000, 100, 10, "linear"),
-    FloatKnob("resonance", 440, [], [], 0, 10000, 100, 10, "linear"),
-    FloatKnob("grainLength", 440, [], [], 0, 10000, 100, 10, "linear"),
-    StateKnob("type", "lowpass", ["lowpass", "highpass", "bandpass", "notch"])
+    FloatKnob("reverb", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
+    FloatKnob("volume", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
+    FloatKnob("lfoFreq", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
+    StateKnob("waveform", "lowpass", [], [], ["lowpass", "highpass", "bandpass", "notch"])
 ])
 
-testGranny = GrannySynth([testState, testState2], testState)
-testGranny.rotateKnob(3, 1)
+settingState = GrannyState("settingState", [
+    LoadKnob("Sample File", [],[]),
+    FloatKnob("volume", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
+    FloatKnob("lfoFreq", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
+    StateKnob("waveform", "lowpass", [], [], ["lowpass", "highpass", "bandpass", "notch"])
+])
 
-print(testGranny.parameters)
+testGranny = GrannySynth([testState, testState2, settingState], testState)
+testGranny.rotateKnob(3, 1)
+testGranny.pressKnob(4)
+testGranny.pressKnob(4)
+
+testGranny.pressKnob(0)
+testGranny.rotateKnob(4,1)
+testGranny.rotateKnob(4,1)
+
+
+print(testGranny.currentState.parameters)

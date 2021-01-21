@@ -1,37 +1,31 @@
 from package.GrannyKnob import GrannyKnob
 from package.util import clamp
 class FloatKnob(GrannyKnob):
-    def __init__(self, paramName, defaultVal, rotateCallbacks, pressCallbacks, minValue, maxValue, coarseIncr, fineIncr, interpol):
+    def __init__(self, paramName, defaultVal, rotateCallbacks, pressCallbacks, minValue, maxValue, increments):
         super().__init__(paramName, defaultVal, rotateCallbacks, pressCallbacks)
         self.minValue = minValue
         self.maxValue = maxValue
-        self.coarseIncr = coarseIncr
-        self.fineIncr = fineIncr
-        self.currIncr = self.coarseIncr
-        self.interpol = interpol
+        self.increments = increments
+        self.incrIndex = 0      
 
     def rotate(self, direction):
-        super().rotate(direction)
-
         if (direction == 0):
-            self.value -= self.currIncr
+            self.value -= self.increments[self.incrIndex]
         else:
-            self.value += self.currIncr
+            self.value += self.increments[self.incrIndex]
 
+        super().rotate(direction)
         return self.value
 
     def press(self):
-        super().press()
-        if (self.currIncr == self.coarseIncr):
-            self.currIncr = self.fineIncr
-        else:
-            self.currIncr = self.coarseIncr
+        length = len(self.increments)
 
+        self.incrIndex = (length + (self.incrIndex - 1)) % length
+
+        super().press()
         return self.sideParam
         #press
 
     @property
     def sideParam(self):
-        if (self.currIncr == self.coarseIncr):
-            return "coarse"
-        return "fine"
+        return str(self.increments[self.incrIndex])
