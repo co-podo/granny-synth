@@ -1,10 +1,22 @@
+from package.views.GrannyStateView import GrannyStateView
 class GrannyState:
     def __init__(self, name = None, knobs = [None, None, None, None]):
         self.name = name
         self.knobs = knobs
-        
+
+        viewParamNames = []
+        viewParamValues = []
+        for knob in knobs:
+            viewParamNames.append(knob.paramName)
+            viewParamValues.append(knob.value)
+
+        self.view = GrannyStateView(name, viewParamNames, viewParamValues)
+
     def rotateKnob(self, knobIndex, direction):
         knob = self.knobs[knobIndex]
+        value = knob.rotate(direction)
+        self.view.changeParam(knobIndex, value)
+        self.view.display()
 
     def pressKnob(self, knobIndex):
         knob = self.knobs[knobIndex]

@@ -1,9 +1,10 @@
-from package.GrannyFactory import GrannyFactory
+# from package.GrannyFactory import GrannyFactory
 from package.GrannyState import GrannyState
 from package.FloatKnob import FloatKnob
 from package.StateKnob import StateKnob
 from package.LoadKnob import LoadKnob
 from package.GrannySynth import GrannySynth
+from package.views.GrannyStateView import GrannyStateView
 
 from package.util import clamp
 import threading
@@ -155,7 +156,12 @@ testGranny.pressKnob(4)
 
 testGranny.pressKnob(0)
 testGranny.rotateKnob(4,1)
-testGranny.rotateKnob(4,1)
+testGranny.rotateKnob(0,1)
 
 
-print(testGranny.currentState.parameters)
+# stateView.changeParam(1, 100)
+# stateView.changeParam(3, "hp")
+# stateView.display()
+
+
+# print(testGranny.currentState.parameters)

@@ -16,7 +16,7 @@ class GrannySynth:
             self.rotateStates(direction)
         else:
             knob = self.knobs[knobIndex]
-            knob.rotate(direction)
+            self.currentState.rotateKnob(knobIndex, direction)
         # change parameter value in display
 
     @property
