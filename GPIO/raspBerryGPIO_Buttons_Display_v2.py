@@ -10,7 +10,6 @@ from PCF8574 import PCF8574_GPIO
 from Adafruit_LCD1602 import Adafruit_CharLCD
 from ky040 import KY040
 import RPi.GPIO as GPIO
-from time import *
 import os, time
 from pythonosc import udp_client
 from pythonosc.dispatcher import Dispatcher
@@ -18,26 +17,26 @@ from pythonosc.osc_server import BlockingOSCUDPServer
 import argparse
 
 
-
-
         
-PCF8574_address = 0x27  # I2C address of the PCF8574 chip.
-PCF8574A_address = 0x3F  # I2C address of the PCF8574A chip.
-# Create PCF8574 GPIO adapter.
-try:
-    mcp = PCF8574_GPIO(PCF8574_address)
-except:
-    try:
-        mcp = PCF8574_GPIO(PCF8574A_address)
-    except:
-        print ('I2C Address Error !')
-        exit(1)
-# Create LCD, passing in MCP GPIO adapter.
+
 
 #test
 if __name__ == "__main__":
 
-    print ('Program start.')
+    # print ('Program start.')
+
+    PCF8574_address = 0x27  # I2C address of the PCF8574 chip.
+    PCF8574A_address = 0x3F  # I2C address of the PCF8574A chip.
+    # Create PCF8574 GPIO adapter.
+    try:
+        mcp = PCF8574_GPIO(PCF8574_address)
+    except:
+        try:
+            mcp = PCF8574_GPIO(PCF8574A_address)
+        except:
+            print ('I2C Address Error !')
+            exit(1)
+# Create LCD, passing in MCP GPIO adapter.
     # Init OSC
     parser = argparse.ArgumentParser()
     parser.add_argument("--ip", default="127.0.0.1",
@@ -56,6 +55,7 @@ if __name__ == "__main__":
     lcd.setCursor(0,1) # set cursor to second lane
     lcd.message( "GRAINZZZ" ) 
 
+# Physical GPIO Pins of Buttons - DO NOT CHANGE
     CLOCKPIN = 4
     CLOCKPIN1 = 17
     CLOCKPIN2 = 27

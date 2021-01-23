@@ -9,7 +9,6 @@ class GrannySynth:
         else:
             knob = self.knobs[knobIndex]
             knob.press()
-
         # change parameter names and values in display
 
     def rotateKnob(self, knobIndex, direction):
