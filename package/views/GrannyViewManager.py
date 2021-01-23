@@ -32,7 +32,7 @@ class GrannyViewManager:
         mcp.output(3,1)     # turn on LCD backlight
         self.lcd.begin(20,4)
 
-        def changeDisplay(x, y, text):
-            self.lcd.setCursor(x, y)
-            self.lcd.message(text)
+    def changeDisplay(self, x, y, text):
+        self.lcd.setCursor(x, y)
+        self.lcd.message(text)
     
