@@ -84,7 +84,7 @@ class GrannyViewManager:
             button2.stop()
             button3.stop()
             button4.stop()
-            lcd.lcd_clear()
+            self.lcd.lcd_clear()
             GPIO.cleanup()
             print ('Program ended.')
 
