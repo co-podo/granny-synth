@@ -7,6 +7,8 @@ from pythonosc import udp_client
 from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
 import argparse
+import threading
+
 class GrannyViewManager:
     def __init__(self):
         self.grannySynth = None
@@ -92,19 +94,23 @@ class GrannyViewManager:
 #         button3.start()
 #         button4.start()
 
-        try:
-            while True:
-                time.sleep(10)
-        finally:
-            print ('Stopping GPIO monitoring...')
-            button0.stop()
-#             button1.stop()
-#             button2.stop()
-#             button3.stop()
-#             button4.stop()
-            self.lcd.clear()
-            GPIO.cleanup()
-            print ('Program ended.')
+        def buttonLoop():
+            try:
+                while True:
+                    time.sleep(10)
+            finally:
+                print ('Stopping GPIO monitoring...')
+                button0.stop()
+        #       button1.stop()
+        #       button2.stop()
+        #       button3.stop()
+        #       button4.stop()
+                self.lcd.clear()
+                GPIO.cleanup()
+                print ('Program ended.')
+
+        thread = threading.Thread(target=buttonLoop)
+        thread.start()
 
     # BAD DELETE LATER
     def start(self, grannySynth):
