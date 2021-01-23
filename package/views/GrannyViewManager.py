@@ -2,13 +2,14 @@ from lib.PCF8574 import PCF8574_GPIO
 from lib.Adafruit_LCD1602 import Adafruit_CharLCD
 import RPi.GPIO as GPIO
 from ky040 import KY040
+import os, time
 from pythonosc import udp_client
 from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
 import argparse
 class GrannyViewManager:
-    def __init__(self, grannySynth):
-        self.grannySynth =  grannySynth # DIS BAD; ONLY FOR TESTING; MOVE KNOB INTEGRATION TO GRANNYSYNTH CLASS
+    def __init__(self):
+        self.grannySynth = None
 
         PCF8574_address = 0x27  # I2C address of the PCF8574 chip.
         PCF8574A_address = 0x3F  # I2C address of the PCF8574A chip.
@@ -28,7 +29,7 @@ class GrannyViewManager:
         parser.add_argument("--port", type=int, default=5005,
         help="The port the OSC server is listening on")
         args = parser.parse_args()
-        client = udp_client.SimpleUDPClient(args.ip, args.port)
+        self.client = udp_client.SimpleUDPClient(args.ip, args.port)
         
         # lcd setup
         self.lcd = Adafruit_CharLCD(pin_rs=0, pin_e=2, pins_db=[4,5,6,7], GPIO=mcp)
@@ -88,6 +89,11 @@ class GrannyViewManager:
             GPIO.cleanup()
             print ('Program ended.')
 
+    # BAD DELETE LATER
+    def start(self, grannySynth):
+        self.grannySynth =  grannySynth # DIS BAD; ONLY FOR TESTING; MOVE KNOB INTEGRATION TO GRANNYSYNTH CLASS
+        
+
     def changeDisplay(self, x, y, text):
         self.lcd.setCursor(x, y)
         self.lcd.message(text)
@@ -102,8 +108,8 @@ class GrannyViewManager:
             direction = 0
 
         self.grannySynth.rotateKnob(index, direction)
-        client.send_message("/rotation", direction)
-        client.send_message("/button", clockpin)
+        self.client.send_message("/rotation", direction)
+        self.client.send_message("/button", clockpin)
 
     def switchPressed(self, pin):
         pass

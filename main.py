@@ -154,7 +154,11 @@ if __name__ == "__main__":
         StateKnob("waveform", "lowpass", [], [], ["lowpass", "highpass", "bandpass", "notch"])
     ], grannyViewManager)
 
-    testGranny = GrannySynth([testState, testState2, settingState], testState, grannyViewManager)
+    testGranny = GrannySynth([testState, testState2, settingState], testState)
+    
+    # BAD
+    grannyViewManager.start(testGranny)
+
     testGranny.rotateKnob(3, 1)
     testGranny.pressKnob(4)
     testGranny.pressKnob(4)
