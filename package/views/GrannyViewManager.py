@@ -42,10 +42,10 @@ class GrannyViewManager:
             index = self.clockPinToKnobIndex[str(clockpin)]
 
             # BAD BAD BAD
-            if direction == 0:
-                direction = 1
-            else:
-                direction = 0
+#             if direction == 0:
+#                 direction = 1
+#             else:
+#                 direction = 0
 
             self.grannySynth.rotateKnob(index, direction)
             self.client.send_message("/rotation", direction)
@@ -83,21 +83,21 @@ class GrannyViewManager:
 
         GPIO.setmode(GPIO.BCM)
         button0 = KY040(CLOCKPIN, DATAPIN, SWITCHPIN, rotaryChange, switchPressed)
-#         button1 = KY040(CLOCKPIN1, DATAPIN1, SWITCHPIN1, self.rotaryChange, self.switchPressed)
-#         button2 = KY040(CLOCKPIN2, DATAPIN2, SWITCHPIN2, self.rotaryChange, self.switchPressed)
-#         button3 = KY040(CLOCKPIN3, DATAPIN3, SWITCHPIN3, self.rotaryChange, self.switchPressed)
-#         button4 = KY040(CLOCKPIN4, DATAPIN4, SWITCHPIN4, self.rotaryChange, self.switchPressed)
+        button1 = KY040(CLOCKPIN1, DATAPIN1, SWITCHPIN1, rotaryChange, switchPressed)
+        button2 = KY040(CLOCKPIN2, DATAPIN2, SWITCHPIN2, rotaryChange, switchPressed)
+        button3 = KY040(CLOCKPIN3, DATAPIN3, SWITCHPIN3, rotaryChange, switchPressed)
+        button4 = KY040(CLOCKPIN4, DATAPIN4, SWITCHPIN4, rotaryChange, switchPressed)
 
         button0.start()
-#         button1.start()
-#         button2.start()
-#         button3.start()
-#         button4.start()
+        button1.start()
+        button2.start()
+        button3.start()
+        button4.start()
 
         def buttonLoop():
             try:
                 while True:
-                    time.sleep(10)
+                    time.sleep(0.1)
             finally:
                 print ('Stopping GPIO monitoring...')
                 button0.stop()
@@ -120,6 +120,7 @@ class GrannyViewManager:
     def changeDisplay(self, x, y, text):
         self.lcd.setCursor(x, y)
         self.lcd.message(text)
+        print(y)
 
     
 

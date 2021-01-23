@@ -37,11 +37,13 @@ class GrannyStateView:
 
     def display(self):
         fullText = ""
-        for line in self.displayText:
+        for i in range(len(self.displayText)):
+            line = self.displayText[i]
+            self.viewManager.changeDisplay(0, i, line)
             fullText += line + "\n" # DELETE LINEBREAK LATER
         # GPIO
 
-        self.viewManager.changeDisplay(0, 0, fullText)
+        #self.viewManager.changeDisplay(0, 0, fullText)
         print(fullText)
 
     def initDisplay(self, name = "name", paramNames = ["par1", "par2", "par3", "par4"], paramValues = ["val1", "val", 0, 0]):          

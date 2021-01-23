@@ -3,7 +3,7 @@ class KY040:
 
     CLOCKWISE = 0
     ANTICLOCKWISE = 1
-    DEBOUNCE = 250
+    DEBOUNCE = 10
 
     def __init__(self, clockPin, dataPin, switchPin, rotaryCallback, switchCallback):
         #persist values
