@@ -1,7 +1,7 @@
 from lib.PCF8574 import PCF8574_GPIO
 from lib.Adafruit_LCD1602 import Adafruit_CharLCD
 import RPi.GPIO as GPIO
-from ky040 import
+from ky040 import KY040
 from pythonosc import udp_client
 from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
