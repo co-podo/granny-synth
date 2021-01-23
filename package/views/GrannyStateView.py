@@ -1,5 +1,5 @@
 class GrannyStateView:
-    def __init__(self, name = "name", paramNames = ["par1", "par2", "par3", "par4"], paramValues = ["val1", "val", 0, 0]):
+    def __init__(self, viewManager, name = "name", paramNames = ["par1", "par2", "par3", "par4"], paramValues = ["val1", "val", 0, 0]):
         self.lineSize = 20
         self.lines = 4
         self.paramSizes = [5, 4, 4, 4]
@@ -9,6 +9,8 @@ class GrannyStateView:
         self.paramLine = 2
         self.displayText = ["--------------------", "-----|----|----|----", "-----|----|----|----", "--------------------"]
         self.empty = " "
+
+        self.viewManager = viewManager
 
         self.initDisplay(name, paramNames, paramValues)
 
@@ -24,6 +26,7 @@ class GrannyStateView:
 
         self.displayText[y] = self.displayText[y][0:x] + value + self.displayText[y][x+size:]
 
+        self.viewManager.changeDisplay(x, y, value)
         # DELETE LATER ONLY FOR TESTING
         # self.display()
 
@@ -32,6 +35,8 @@ class GrannyStateView:
         for line in self.displayText:
             fullText += line + "\n" # DELETE LINEBREAK LATER
         # GPIO
+
+        self.viewManager.changeDisplay(0, 0, fullText)
         print(fullText)
 
     def initDisplay(self, name = "name", paramNames = ["par1", "par2", "par3", "par4"], paramValues = ["val1", "val", 0, 0]):          
