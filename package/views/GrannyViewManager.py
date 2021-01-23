@@ -1,7 +1,7 @@
 from lib.PCF8574 import PCF8574_GPIO
 from lib.Adafruit_LCD1602 import Adafruit_CharLCD
 import RPi.GPIO as GPIO
-from ky040 import KY040
+from lib.ky040 import KY040
 import os, time
 from pythonosc import udp_client
 from pythonosc.dispatcher import Dispatcher
@@ -35,6 +35,23 @@ class GrannyViewManager:
         self.lcd = Adafruit_CharLCD(pin_rs=0, pin_e=2, pins_db=[4,5,6,7], GPIO=mcp)
         mcp.output(3,1)     # turn on LCD backlight
         self.lcd.begin(20,4)
+        
+        def rotaryChange(direction, clockpin):
+            index = self.clockPinToKnobIndex[str(clockpin)]
+
+            # BAD BAD BAD
+            if direction == 0:
+                direction = 1
+            else:
+                direction = 0
+
+            self.grannySynth.rotateKnob(index, direction)
+            self.client.send_message("/rotation", direction)
+            self.client.send_message("/button", clockpin)
+            
+        def switchPressed(pin):
+            pass
+            print ("button connected to pin:{} pressed".format(pin))
 
         CLOCKPIN = 4
         CLOCKPIN1 = 17
@@ -63,29 +80,29 @@ class GrannyViewManager:
         }
 
         GPIO.setmode(GPIO.BCM)
-        button0 = KY040(CLOCKPIN, DATAPIN, SWITCHPIN, self.rotaryChange, self.switchPressed)
-        button1 = KY040(CLOCKPIN1, DATAPIN1, SWITCHPIN1, self.rotaryChange, self.switchPressed)
-        button2 = KY040(CLOCKPIN2, DATAPIN2, SWITCHPIN2, self.rotaryChange, self.switchPressed)
-        button3 = KY040(CLOCKPIN3, DATAPIN3, SWITCHPIN3, self.rotaryChange, self.switchPressed)
-        button4 = KY040(CLOCKPIN4, DATAPIN4, SWITCHPIN4, self.rotaryChange, self.switchPressed)
+        button0 = KY040(CLOCKPIN, DATAPIN, SWITCHPIN, rotaryChange, switchPressed)
+#         button1 = KY040(CLOCKPIN1, DATAPIN1, SWITCHPIN1, self.rotaryChange, self.switchPressed)
+#         button2 = KY040(CLOCKPIN2, DATAPIN2, SWITCHPIN2, self.rotaryChange, self.switchPressed)
+#         button3 = KY040(CLOCKPIN3, DATAPIN3, SWITCHPIN3, self.rotaryChange, self.switchPressed)
+#         button4 = KY040(CLOCKPIN4, DATAPIN4, SWITCHPIN4, self.rotaryChange, self.switchPressed)
 
         button0.start()
-        button1.start()
-        button2.start()
-        button3.start()
-        button4.start()
+#         button1.start()
+#         button2.start()
+#         button3.start()
+#         button4.start()
 
         try:
             while True:
-                sleep(10)
+                time.sleep(10)
         finally:
             print ('Stopping GPIO monitoring...')
             button0.stop()
-            button1.stop()
-            button2.stop()
-            button3.stop()
-            button4.stop()
-            self.lcd.lcd_clear()
+#             button1.stop()
+#             button2.stop()
+#             button3.stop()
+#             button4.stop()
+            self.lcd.clear()
             GPIO.cleanup()
             print ('Program ended.')
 
@@ -98,20 +115,7 @@ class GrannyViewManager:
         self.lcd.setCursor(x, y)
         self.lcd.message(text)
 
-    def rotaryChange(self, direction, clockpin):
-        index = self.clockPinToKnobIndex[str(clockpin)]
+    
 
-        # BAD BAD BAD
-        if direction == 0:
-            direction = 1
-        else:
-            direction = 0
-
-        self.grannySynth.rotateKnob(index, direction)
-        self.client.send_message("/rotation", direction)
-        self.client.send_message("/button", clockpin)
-
-    def switchPressed(self, pin):
-        pass
-        print ("button connected to pin:{} pressed".format(pin))
+    
     
