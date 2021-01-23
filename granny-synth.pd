@@ -34,7 +34,7 @@
 #X obj 634 1340 dac~, f 17;
 #X obj 732 1268 *~;
 #X obj 999 415 vsl 20 111 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
+-1 -1 1700 1;
 #X floatatom 1013 542 5 0 0 0 - - -, f 5;
 #X obj 634 1268 *~, f 2;
 #X obj 377 386 s length-hz;
@@ -44,7 +44,7 @@
 #X obj 608 769 phasor~;
 #X obj 608 662 r length-hz;
 #X obj 80 516 hsl 178 20 -2 2 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 13275 1;
+-1 -1 9875 1;
 #X floatatom 80 553 5 0 0 0 - - -, f 5;
 #X obj 608 736 *~;
 #X obj 138 553 s playback-speed;
@@ -82,19 +82,19 @@
 #X msg 634 1161 next \$1 \$2 \$3;
 #X text 1027 417 master volume;
 #X obj 318 513 hsl 128 15 0 10 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 6350 1;
+-1 -1 4950 1;
 #X floatatom 456 542 5 0 0 0 - - -, f 5;
 #X obj 681 891 phasor~;
 #X obj 816 907 unsig~ 0.1;
 #X floatatom 816 947 5 0 0 0 - - -, f 5;
 #X obj 816 928 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 11428 1;
+-1 -1 8751 1;
 #X obj 765 1340 env~;
 #X obj 765 1402 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
 #X obj 590 1402 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
 #X obj 590 1340 env~;
 #X obj 816 1009 hsl 150 16 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 14250 1;
+-1 -1 439 1;
 #X floatatom 816 1035 5 0 0 0 - - -, f 5;
 #X obj 816 986 unsig~ 0.1;
 #X text 600 1015 to-do: multiply with lfo output (limit output of modulation
@@ -126,12 +126,12 @@ warum????, f 23;
 #X obj 999 567 s master-volume;
 #X obj 646 1220 r master-volume;
 #X obj 630 513 hsl 128 15 5 2000 1 0 empty empty empty -2 -8 0 10 -262144
--1 -1 9761 1;
+-1 -1 7461 1;
 #X obj 630 545 s grain-length;
 #X floatatom 732 545 9 0 0 0 - - -, f 9;
 #X obj 1076 616 r grain-length;
 #X obj 825 512 hsl 128 15 -2 2 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 9525 1;
+-1 -1 3425 1;
 #X obj 825 535 s pitch;
 #X obj 1139 653 r pitch;
 #X floatatom 885 535 5 0 0 0 - - -, f 5;
@@ -143,7 +143,7 @@ ist...;
 #X obj 319 453 loadbang;
 #X floatatom 1073 878 5 0 0 0 - - -, f 5;
 #X obj 1073 859 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 9906 1;
+-1 -1 5960 1;
 #X obj 1073 838 unsig~ 0.01;
 #X obj 1073 785 phasor~ 1, f 17;
 #X obj 630 450 loadbang;
