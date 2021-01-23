@@ -1,5 +1,5 @@
 class GrannySynth:
-    def __init__(self, grannyStates = [None, None, None, None], defaultState = None):
+    def __init__(self, grannyStates = [None, None, None, None], defaultState = None, viewManager = None):
         self.grannyStates = grannyStates
         self.currentState = defaultState
 

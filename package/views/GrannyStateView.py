@@ -6,7 +6,6 @@ class GrannyStateView:
         self.namePosition = int((self.lineSize / 2) - 3)
         self.lineNames = ["stateName", "paramNames", "paramValues", "empty"]
         self.borderThickness = 1
-        self.paramLine = 2
         self.displayText = ["--------------------", "-----|----|----|----", "-----|----|----|----", "--------------------"]
         self.empty = " "
 
