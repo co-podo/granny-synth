@@ -25,9 +25,15 @@ class GrannyStateView:
 
         self.displayText[y] = self.displayText[y][0:x] + value + self.displayText[y][x+size:]
 
+        return {"x": x, "y": y, "value": value}
+
+    def displayParam(self, index, value, line = 2):
+        returnVal = self.changeParam(index, value, line)
+        x = returnVal["x"]
+        y = returnVal["y"]
+        value = returnVal["value"]
         self.viewManager.changeDisplay(x, y, value)
-        # DELETE LATER ONLY FOR TESTING
-        # self.display()
+
 
     def display(self):
         fullText = ""

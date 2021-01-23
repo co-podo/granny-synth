@@ -15,7 +15,7 @@ class GrannyState:
     def rotateKnob(self, knobIndex, direction):
         knob = self.knobs[knobIndex]
         value = knob.rotate(direction)
-        self.view.changeParam(knobIndex, value)
+        self.view.displayParam(knobIndex, value)
         self.view.display()
 
     def pressKnob(self, knobIndex):
