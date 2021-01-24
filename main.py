@@ -148,11 +148,11 @@ if __name__ == "__main__":
         StateKnob("type", "lowpass", [], [], ["lowpass", "highpass", "bandpass", "notch"])
     ], grannyViewManager)
 
-    testState2 = GrannyState("testState2", [
-        FloatKnob("reverb", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
-        FloatKnob("volume", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
-        FloatKnob("lfoFreq", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
-        StateKnob("waveform", "lowpass", [], [], ["lowpass", "highpass", "bandpass", "notch"])
+    masterState = GrannyState("master", [
+        FloatKnob("volume", 0, [], [], 0, 1, [0.1, 0.01]),
+        FloatKnob("volume", 0, [], [], 0, 1, [0.1, 0.01]),
+        FloatKnob("volume", 0, [], [], 0, 1, [0.1, 0.01]),
+        FloatKnob("volume", 0, [], [], 0, 1, [0.1, 0.01]),
     ], grannyViewManager)
 
     settingState = GrannyState("settingState", [
@@ -162,7 +162,7 @@ if __name__ == "__main__":
         StateKnob("waveform", "lowpass", [], [], ["lowpass", "highpass", "bandpass", "notch"])
     ], grannyViewManager)
 
-    testGranny = GrannySynth([grainState, testState, testState2, settingState], grainState)
+    testGranny = GrannySynth([grainState, masterState, testState, settingState], grainState)
     
     grannyMediator = GrannyMediator(testGranny, grannyViewManager, True)
 
