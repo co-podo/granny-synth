@@ -132,7 +132,7 @@ if __name__ == "__main__":
     # baseVal = changeVal(baseVal, +6)
     # baseVal = changeVal(baseVal, -0.1)
 
-    grannyViewManager = GrannyViewManager(debug = True)
+    grannyViewManager = GrannyViewManager(debug = False)
 
     grainState = GrannyState("grain", [
         FloatKnob("length", 100, [], [], 5, 2000, [1000, 100, 10, 1]),
@@ -157,13 +157,13 @@ if __name__ == "__main__":
 
     testGranny = GrannySynth([grainState, masterState, testState], masterState)
     
-    grannyMediator = GrannyMediator(testGranny, grannyViewManager, True)
+    grannyMediator = GrannyMediator(testGranny, grannyViewManager, False)
 
-    testGranny.rotateKnob(1, 1)
-    testGranny.rotateKnob(2, 1)
-    testGranny.rotateKnob(2, 1)
-    testGranny.pressKnob(0)
-    testGranny.pressKnob(0)
+    # testGranny.rotateKnob(1, 1)
+    # testGranny.rotateKnob(2, 1)
+    # testGranny.rotateKnob(2, 1)
+    # testGranny.pressKnob(0)
+    # testGranny.pressKnob(0)
 
     # timer2.start()
     # testGranny.pressKnob(4)
