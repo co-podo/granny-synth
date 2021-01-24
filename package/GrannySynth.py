@@ -33,6 +33,8 @@ class GrannySynth:
             msg = "/" + self.currentState.name + "-" + knob.paramName
             self.client.send_message(msg, knob.value)
             print(msg + ": " + str(knob.value))
+
+        self.currentState.view.display()
         # change parameter value in display
 
     @property
@@ -54,8 +56,6 @@ class GrannySynth:
             self.currentState = self.grannyStates[(length + (i - 1)) % length]
         else:
             self.currentState = self.grannyStates[(length + (i + 1)) % length]
-
-        self.currentState.view.display()
 
     def pressSpecial(self):
         pass

@@ -14,6 +14,9 @@ import threading
 import math
 
 if __name__ == "__main__":
+    debug = False
+
+
     # structure: [name of parameter, default value, increment value, name of state after click]
     #
     #
@@ -132,7 +135,7 @@ if __name__ == "__main__":
     # baseVal = changeVal(baseVal, +6)
     # baseVal = changeVal(baseVal, -0.1)
 
-    grannyViewManager = GrannyViewManager(debug = False)
+    grannyViewManager = GrannyViewManager(debug)
 
     grainState = GrannyState("grain", [
         FloatKnob("length", 100, [], [], 5, 2000, [1000, 100, 10, 1]),
@@ -149,23 +152,24 @@ if __name__ == "__main__":
     ], grannyViewManager)
 
     masterState = GrannyState("master", [
-        FloatKnob("volume", 0, [], [], 0, 1, [0.1, 0.01]),
+        FloatKnob("volume", 0, [], [], 0, 15, [1, 0.1, 0.01]),
         LoadKnob("sample", [],[]),
-        FloatKnob("volume", 0, [], [], 0, 1, [0.1, 0.01]),
-        FloatKnob("volume", 0, [], [], 0, 1, [0.1, 0.01]),
+        FloatKnob("volume", 0, [], [], 0, 15, [1, 0.1, 0.01]),
+        FloatKnob("volume", 0, [], [], 0, 15, [1, 0.1, 0.01]),
     ], grannyViewManager)
 
     testGranny = GrannySynth([grainState, masterState, testState], masterState)
     
-    grannyMediator = GrannyMediator(testGranny, grannyViewManager, False)
+    grannyMediator = GrannyMediator(testGranny, grannyViewManager, debug)
 
-    # testGranny.rotateKnob(1, 1)
-    # testGranny.rotateKnob(2, 1)
-    # testGranny.rotateKnob(2, 1)
-    # testGranny.pressKnob(0)
-    # testGranny.pressKnob(0)
+    if debug:
+        testGranny.rotateKnob(1, 1)
+        testGranny.rotateKnob(2, 1)
+        testGranny.rotateKnob(2, 1)
+        testGranny.pressKnob(0)
+        testGranny.pressKnob(0)
 
-    # timer2.start()
+        timer2.start()
     # testGranny.pressKnob(4)
 
     # testGranny.pressKnob(0)
