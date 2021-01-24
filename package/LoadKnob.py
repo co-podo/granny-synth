@@ -4,7 +4,7 @@ import os
 class LoadKnob(StateKnob):
     def __init__(self, paramName, rotateCallbacks = [], pressCallbacks = []):
         files = []
-        for file in os.listdir("./samples"):
+        for file in os.listdir("/home/pi/aktuell/granny-synth/samples"):
             if file.endswith(".wav"):
                 files.append(str(file))
         files = sorted(files)
