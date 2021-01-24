@@ -165,7 +165,7 @@ if __name__ == "__main__":
     testGranny.pressKnob(0)
     testGranny.pressKnob(0)
 
-    timer2.start()
+    # timer2.start()
     # testGranny.pressKnob(4)
 
     # testGranny.pressKnob(0)
