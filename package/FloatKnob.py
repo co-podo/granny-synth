@@ -13,6 +13,8 @@ class FloatKnob(GrannyKnob):
             self.value -= self.increments[self.incrIndex]
         else:
             self.value += self.increments[self.incrIndex]
+        
+        self.value = clamp(self.value, self.minValue, self.maxValue)
 
         super().rotate(direction)
         return self.value
