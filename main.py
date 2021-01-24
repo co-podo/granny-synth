@@ -109,13 +109,13 @@ if __name__ == "__main__":
         print(msg)
 
     def changeMsg():
-        timer.cancel()
-        print("timer cancelled")
+        print("change Sample!")
+        testGranny.rotateKnob(1, 1)
 
     # timer = threading.Timer(1, func, [printMsg])
     # timer.start()
-    # timer2 = threading.Timer(0.5, changeMsg)
-    # timer2.start()
+    timer2 = threading.Timer(2, changeMsg)
+    
 
 
     # val un baseVal cachen?
@@ -150,25 +150,22 @@ if __name__ == "__main__":
 
     masterState = GrannyState("master", [
         FloatKnob("volume", 0, [], [], 0, 1, [0.1, 0.01]),
-        FloatKnob("volume", 0, [], [], 0, 1, [0.1, 0.01]),
+        LoadKnob("sample", [],[]),
         FloatKnob("volume", 0, [], [], 0, 1, [0.1, 0.01]),
         FloatKnob("volume", 0, [], [], 0, 1, [0.1, 0.01]),
     ], grannyViewManager)
 
-    settingState = GrannyState("settingState", [
-        LoadKnob("Sample File", [],[]),
-        FloatKnob("volume", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
-        FloatKnob("lfoFreq", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
-        StateKnob("waveform", "lowpass", [], [], ["lowpass", "highpass", "bandpass", "notch"])
-    ], grannyViewManager)
-
-    testGranny = GrannySynth([grainState, masterState, testState, settingState], grainState)
+    testGranny = GrannySynth([grainState, masterState, testState], masterState)
     
     grannyMediator = GrannyMediator(testGranny, grannyViewManager, True)
 
-    testGranny.rotateKnob(3, 1)
-    testGranny.rotateKnob(3, 1)
-    # testGranny.pressKnob(4)
+    testGranny.rotateKnob(1, 1)
+    testGranny.rotateKnob(2, 1)
+    testGranny.rotateKnob(2, 1)
+    testGranny.pressKnob(0)
+    testGranny.pressKnob(0)
+
+    timer2.start()
     # testGranny.pressKnob(4)
 
     # testGranny.pressKnob(0)

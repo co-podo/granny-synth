@@ -24,6 +24,7 @@ class FloatKnob(GrannyKnob):
 
         self.incrIndex = (length + (self.incrIndex - 1)) % length
 
+        print(self.increments[self.incrIndex])
         super().press()
         return self.sideParam
         #press

@@ -20,6 +20,7 @@ class GrannyState:
 
     def pressKnob(self, knobIndex):
         knob = self.knobs[knobIndex]
+        knob.press()
 
     @property
     def parameters(self):

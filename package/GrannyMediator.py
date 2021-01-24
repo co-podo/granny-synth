@@ -15,15 +15,25 @@ class GrannyMediator:
         else:
             self.grannyViewManager.debug = True
 
-    def pinToIndex(self, pin):
-        clockPinToKnobIndex = {
+    def clockpinToIndex(self, pin):
+        clockpinToKnobIndex = {
             "4": 0,
             "17": 1,
             "27": 2,
             "22": 3,
             "5": 4
         }
-        return clockPinToKnobIndex[str(pin)]
+        return clockpinToKnobIndex[str(pin)]
+
+    def switchpinToIndex(self, pin):
+        switchpinToKnobIndex = {
+            "20": 0,
+            "16": 1,
+            "12": 2,
+            "25": 3,
+            "24": 4
+        }
+        return switchpinToKnobIndex[str(pin)]
 
     def rotation(self, index, direction):
         self.grannySynth.rotateKnob(index, direction)
@@ -32,7 +42,6 @@ class GrannyMediator:
     def press(self, index):
         self.grannySynth.pressKnob(index)
         # self.client.send_message("/button", clockpin)
-        pass
 
     def setupCommunication(self):
         from lib.Adafruit_LCD1602 import Adafruit_CharLCD
@@ -81,13 +90,13 @@ class GrannyMediator:
         SWITCHPIN4 = 24
     
         def rotaryChange(direction, clockpin):
-            index = self.pinToIndex(clockpin)
+            index = self.clockpinToIndex(clockpin)
             self.rotation(index, direction)
             
-        def switchPressed(clockpin):
-            index = self.pinToIndex(clockpin)
+        def switchPressed(switchpin):
+            index = self.switchpinToIndex(switchpin)
             self.press(index)
-            print ("button connected to pin:{} pressed".format(clockpin))
+            print ("button connected to pin:{} pressed".format(switchpin))
 
         button0 = KY040(CLOCKPIN, DATAPIN, SWITCHPIN, rotaryChange, switchPressed)
         button1 = KY040(CLOCKPIN1, DATAPIN1, SWITCHPIN1, rotaryChange, switchPressed)
