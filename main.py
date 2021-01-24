@@ -7,6 +7,7 @@ from package.LoadKnob import LoadKnob
 from package.GrannySynth import GrannySynth
 from package.views.GrannyStateView import GrannyStateView
 from package.views.GrannyViewManager import GrannyViewManager
+from package.GrannyMediator import GrannyMediator
 
 from package.util import clamp
 import threading
@@ -131,9 +132,16 @@ if __name__ == "__main__":
     # baseVal = changeVal(baseVal, +6)
     # baseVal = changeVal(baseVal, -0.1)
 
-    grannyViewManager = GrannyViewManager()
+    grannyViewManager = GrannyViewManager(debug = True)
 
-    testState = GrannyState("testState", [
+    grainState = GrannyState("grain", [
+        FloatKnob("length", 100, [], [], 5, 2000, [1000, 100, 10, 1]),
+        FloatKnob("pitch", 1, [], [], -4, 4, [1, 0.1, 0.01]),
+        FloatKnob("density", 5, [], [], 0, 20, [10, 1, 0.1]),
+        FloatKnob("speed", 1, [], [], -4, 4, [1, 0.1, 0.01]),
+    ], grannyViewManager)    
+
+    testState = GrannyState("filter", [
         FloatKnob("freq", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
         FloatKnob("resonance", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
         FloatKnob("grainLength", 440, [], [], 0, 10000, [1000, 100, 10, 1]),
@@ -154,12 +162,12 @@ if __name__ == "__main__":
         StateKnob("waveform", "lowpass", [], [], ["lowpass", "highpass", "bandpass", "notch"])
     ], grannyViewManager)
 
-    testGranny = GrannySynth([testState, testState2, settingState], testState)
+    testGranny = GrannySynth([grainState, testState, testState2, settingState], grainState)
     
-    # BAD
-    grannyViewManager.start(testGranny)
+    grannyMediator = GrannyMediator(testGranny, grannyViewManager, True)
 
-#     testGranny.rotateKnob(3, 1)
+    testGranny.rotateKnob(3, 1)
+    testGranny.rotateKnob(3, 1)
 #     testGranny.pressKnob(4)
 #     testGranny.pressKnob(4)
 # 
