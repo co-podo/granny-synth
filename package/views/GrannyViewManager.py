@@ -5,8 +5,9 @@ class GrannyViewManager:
 
     def changeDisplay(self, x, y, text):
         if not self.debug:
-            self.lcd.setCursor(x, y)
-            self.lcd.message(text)
+            if not self.lcd == None:
+                self.lcd.setCursor(x, y)
+                self.lcd.message(text)
 
     
 
