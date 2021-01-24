@@ -168,12 +168,12 @@ if __name__ == "__main__":
 
     testGranny.rotateKnob(3, 1)
     testGranny.rotateKnob(3, 1)
-#     testGranny.pressKnob(4)
-#     testGranny.pressKnob(4)
-# 
-#     testGranny.pressKnob(0)
-#     testGranny.rotateKnob(4,1)
-#     testGranny.rotateKnob(0,1)
+    # testGranny.pressKnob(4)
+    # testGranny.pressKnob(4)
+
+    # testGranny.pressKnob(0)
+    # testGranny.rotateKnob(4,1)
+    # testGranny.rotateKnob(0,1)
 
     
 
