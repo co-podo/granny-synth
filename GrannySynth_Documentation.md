@@ -1,4 +1,6 @@
-**Granny Synth**Adrian Ludwig
+# Granny Synth
+
+Adrian Ludwig
  Im Sack 11
  86152 Augsburg
  +49 157 71704314
@@ -16,26 +18,25 @@ Codrin Podoleanu
 
 codrin.podoleanu@hs-augsburg.de
 
-**ABSTRACT**
+## ABSTRACT
 
 Kurze Zusammenfassung worum es geht und welche Ergebnisse erzielt wurden. Das Abstract schreibt man am besten als Letztes, wenn man den Inhalt des Papiers aufgeschrieben hat.
 
-**Categories and Subject Descriptors
-**
+ #### Categories and Subject Descriptors
 
 C.3 [SPECIAL-PURPOSE AND APPLICATION-BASED SYSTEMS] *,* H5.5 [SOUND AND MUSIC COMPUTING], [H.5.2](http://www.acm.org/about/class/ccs98-html#H.5.2) [USER INTERFACES]
 
-**General Terms**
+#### General Terms
 
 Design, Experimentation
 
-**Keywords**
+#### Keywords
 
 Granularsynthese, Raspberry Pi, Pure Data, Liveperformance
 
-1. **MOTIVATION**
+#### 1. MOTIVATION
 
-Problemstellung: Granulare Synthese 
+##### Problemstellung: Granulare Synthese 
 
 Bei der Erstellung elektronischer Musik kommt es darauf an stets eigene, neue Klänge zu gestalten. Eine sehr vielseitige, mächtige Möglichkeit Klänge zu gestalten und zu Formen it die sogenannte "Granularsynthese". Vor allem in der Improvisation lassen sich mit dieser Syntheseart stark eigenständige, eindrucksvolle Klänge erzeugen.
 
@@ -76,7 +77,7 @@ Dieses Paper beschreibt die Erstellung eines Prototypen des Systems "Granny Synt
 - - Erzielte Ergebnisse
   - Erweiterungsmöglchkeiten
 
-1. **Verwandte Arbeiten**
+#### 2. Verwandte Arbeiten
 
 Wie in der Motivation beschrieben, gibt es bereits eine Vielzahl von Softwarelösungen für Granulare Synthese. Ein Prominentes Beispiel ist der in Ableton Live (Digital Audio Workstation) verfügbare "Granulator" https://www.monolake.de/technology/granulator.html
 
@@ -92,74 +93,73 @@ Der Klangerzeugungsaufbau und die Modulationsparamter des Granulator dienen als 
 
 Als Basis für das System soll - wie bei Critter and Guitaris "Organelle" ein Raspberry Pi und Pure Data dienen. Im Gegensatz zur Organelle setzen wir explizit auf granulare Synthese, sowie auf niedrigere Kosten.
 
-1. **ANWENDUNGSSZENARIO & Use Case**
+#### 3.ANWENDUNGSSZENARIO & Use Case
 
-2. 1.  **Portabler Granularsynthesizer**
+1. ##### 3.1 Portabler Granularsynthesizer
 
-Entwicklung eines portablen, preiswerten Granularsynthesizers. Nutzer:innen sollen mit dem Gerät ein flexibles, Portables Gerät für die Liveanwendung von Granularsynthese zur Hand haben. 
+2. Entwicklung eines portablen, preiswerten Granularsynthesizers. Nutzer:innen sollen mit dem Gerät ein          flexibles,  Portables Gerät für die Liveanwendung von Granularsynthese zur Hand haben. 
 
+1. ##### 3.2 Definition der Use Cases
 
+2. Die wichtigsten Uses Cases werden im Folgenden erläutert.
 
-1. 1. **Definition der Use Cases**
+###### 	3.2.1 Hardwaresystem für Granularsynthese
 
-Die wichtigsten Uses Cases werden im Folgenden erläutert.
+Ein:e Nutzer:in benutzt das System um einen Granularen Synthesizer zu steuern. Dafür werden die eingesetzten Hardwarekomponenten zur Kommunikation zwischen Akteur und Hardwaresystem genutzt. 
+  - User dreht Encoder im Uhrzeigersinn: 
+       nkrement eines Parameterwertes
 
-3.2.1 Hardwaresystem für Granularsynthese
- Ein:e Nutzer:in benutzt das System um einen 			Granularen Synthesizer zu steuern. Dafür werden die 		eingesetzten Hardwarekomponenten zur 			Kommunikation zwischen Akteur und Hardwaresystem 		genutzt. 
- User dreht Encoder im Uhrzeigersinn: 
- 	Inkrement eines Parameterwertes
- User dreht Encoder gegen Uhrzeigersinn: 
- 	Dekrement einesParameterwertes
- User drückt Encoder nach unten: 
- 	Modus des jeweiligen Encoders wird 				ausgewählt
+  - User dreht Encoder gegen Uhrzeigersinn: 
+       ekrement einesParameterwertes
 
-3.2.2 Modulares Hardwaresystem zur Bedienung von 		Pure Data 
- Ein:e Nutzer:in definiert ein eigenes Pure Data Patch, 		das über die vorhandene Hardware gesteuert werden 		kann. Hierfür muss die Nutzer:in eine entsprechende 		Konfigurationsdatei für die Hardware, sowie ein „Pure 		Data“- Patch anlegen.
+  - User drückt Encoder nach unten: 
+       odus des jeweiligen Encoders wird ausgewählt
 
-1. **ENTWURF EINES PROTOTYPS**
+       ###### 3.2.2 Modulares Hardwaresystem zur Bedienung von Pure Data 
 
-2. 1. **Technischer Ansatz**
+       Ein:e Nutzer:in definiert ein eigenes Pure Data Patch, das über die vorhandene Hardware gesteuert werden kann. Hierfür muss die Nutzer:in eine entsprechende Konfigurationsdatei für die Hardware, sowie ein „Pure Data“- Patch anlegen.
 
-Das Gerät basiert auf der Hardwareseite aus einem Raspberry-pi 3, Fünf Ky-040 Drehencodern, sowie einem 20x4 Zeichen LCD Display. Die Komponenten befinden sich in einem einfachen aus Holz gefertigten Gehäuse.
- Zur Verarbeitung der IO-Befehlen verwenden wir python und die zum Raspberry korrespondierende python Library RPi.GPIO. 
- Als System für die Granularsynthese verwendet das System die Open Source Software „Pure Data“. 
- Die Kommunikation zwischen GPIO und Pure Data erfolgt über das OSC-Protokoll.
+#### 4. **ENTWURF EINES PROTOTYPS**
 
+1. ##### 4.1 Technischer Ansatz
 
+2. Das Gerät basiert auf der Hardwareseite aus einem Raspberry-pi 3, Fünf Ky-040 Drehencodern, sowie einem 20x4 Zeichen LCD Display. Die Komponenten befinden sich in einem einfachen, aus Holz gefertigten Gehäuse.
+    Zur Verarbeitung der IO-Befehle verwenden wir python und die zum Raspberry korrespondierende python Library RPi.GPIO. 
+    Als System für die Granularsynthese verwendet das System die Open Source Software „Pure Data“. 
+    Die Kommunikation zwischen GPIO und Pure Data erfolgt über das OSC-Protokoll.
 
-Beschreiben Sie hier kurz, worum es sich bei der von Ihnen eingesetzten Technologie handelt, z.B. welche physikalischen Effekte ausgenutzt werden (vgl. Foliensatz Sensoren) oder welche Algorithmen und Softwaretechniken zum Einsatz kommen.
+1. ##### 4.2 **Konzeptueller Aufbau des Prototypen**
 
-1. 1. **Konzeptueller Aufbau des Prototypen**
+2. Das System besteht aus mehreren, miteinander kommunizierenden Untersystemen. 
 
-Das System besteht aus mehreren, miteinander kommunizierenden Untersystemen. 
+3. Beschreiben Sie hier aus welchen Systemkomponenten Ihr Prototyp besteht, welche Schnittstellen Sie zwischen den Komponenten festlegen. Evtl. ist es sinnvoll, weitere Unterpunkte zu bilden, etwa zur Beschreibung eines „Servers“ und eines „Clients“ oder zwischen „Sensorik“ und „Steuerung“ usw., je nachdem, welche Komponenten Ihr Konzept umfasst.
 
-Beschreiben Sie hier aus welchen Systemkomponenten Ihr Prototyp besteht, welche Schnittstellen Sie zwischen den Komponenten festlegen. Evtl. ist es sinnvoll, weitere Unterpunkte zu bilden, etwa zur Beschreibung eines „Servers“ und eines „Clients“ oder zwischen „Sensorik“ und „Steuerung“ usw., je nachdem, welche Komponenten Ihr Konzept umfasst.
+1. 1. ###### 4.2.1 GPIO - Server
 
-1. 1. 1. *GPIO - Server*
+   2. Die Verarbeitung der Sensordaten erfolgt über einen GPIO-Server, der die entsprechenden Inputs und 	Outputs überwacht. Er empfängt die Signale von Encodern und Display und handlet die Ausgabe von 	Daten an das Display.
 
-​	Die Verarbeitung der Sensordaten erfolgt über einen 		GPIO-Server, der die entsprechenden Inputs und 			Outputs überwacht. Er empfängt die Signale von 			Encodern und Display und handlet die Ausgabe von 		Daten an das Display.
+1. 1. ###### 4.2.2 OSC-Client
 
-1. 1. 1. *OSC-Client
-          Die Kommunikation der GPIO Signale zur Audioverarbeitungssoftware erfolgt über einen OSC-Client.*
-      2. *OSC-Server*
+   2.  Die Kommunikation der GPIO Signale zur Audioverarbeitungssoftware erfolgt über einen OSC-Client.
 
-​	In der Umgebung des Klangerzeugers empfängt ein Server die über OSC Übertragenen Befehle zur Kontrolle des Klangerzeugers.
+   3. ###### 4.2.3 OSC-Server
 
-1. 1. 1. *Klangerzeuger/Granularer Synthesizer
-          Die Audioverarbeitung erfolgt über eine eigene Sofware, in diesem Fall „Pure Data“.
-          Innerhalb der Software wird ein „Patch“ für die Granularsynthese angefertigt. Die Steuerung erfolgt über OSC. Das Programm steuert auch die Audioausgabe auf dem Gerät.* 
+   4. In der Umgebung des Klangerzeugers empfängt ein Server die über OSC Übertragenen Befehle zur Kontrolle des Klangerzeugers.
+
+1. 1. ###### 4.2.4. Klangerzeuger/Granularer Synthesizer
+
+   2. Die Audioverarbeitung erfolgt über eine eigene Sofware, in diesem Fall „Pure Data“.
+      Innerhalb der Software wird ein „Patch“ für die Granularsynthese angefertigt. Die Steuerung erfolgt über OSC. Das Programm steuert auch die Audioausgabe auf dem Gerät.* 
 
 Beachten Sie, in diesem Abschnitt sollten Sie weitgehend von Implementierungsdetails abstrahieren. Diese bündeln Sie in einem separaten Abschnitt
 
 
 
-1. **IMPLEMENTIERUNG** 
+#### 5. IMPLEMENTIERUNG 
 
-2. 1. **Hard- und Softwareumgebung**
+1. ##### 5.1. Hard- und Softwareumgebung
 
-
-
-Hardware:
+Hardware: 
 
 - 5 x KY-040 Drehimpulsgeber
 - 1 x 20x4 LCD-Display
@@ -168,8 +168,7 @@ Hardware:
 - 1 x Breakout-Adapter Rasperry pi
 - 1 x Raspberrry Pi 3 B
 
-
- Auf dem Raspberry Pi läuft das Debian-basierte Linux-Betriebssystem Raspbian. Als Sprache für die IO-Kommunikation wird Python genutzt. Folgende Libraries werden dafür verwendet:
+Auf dem Raspberry Pi läuft das Debian-basierte Linux-Betriebssystem Raspbian. Als Sprache für die IO-Kommunikation wird Python genutzt. Folgende Libraries werden dafür verwendet:
 
 - Python-osc
 - RPI.GPIO
@@ -180,72 +179,68 @@ Hardware:
 
 Für die Synthese wird die Software „Pure Data“ verwendet. Folgende Pakete werden genutzt:
 
-
-
-
+### CODY SCHREIB HIER MAL WAS HIN 
 
 Beschreiben Sie hier kurz Ihre Entwicklungsumgebung (Hardware, Betriebssystem, Programmiersprachen / Bibliotheken, eingesetzte Tools etc.). Evtl. können Sie hier auch noch auf die Entwicklungsmethode eingehen, etwa, wenn Sie verschiedene Testaufbauten gemacht haben, die letztlich zum finalen Prototypen geführt haben.
 
-1. 1. **Kern der Implementierung**
+1. ##### 5.2  Kern der Implementierung
 
-Ein großer Teil der Arbeit war die Anfertigung des Pure Data Patches für die Granularsynthese, sowie die Kommunikation zwischen GPIO des Raspberry Pi und Pure Data.
+2. Ein großer Teil der Arbeit war die Anfertigung des Pure Data Patches für die Granularsynthese, sowie die Kommunikation zwischen GPIO des Raspberry Pi und Pure Data.
 
-Dabei war eine besondere Herausforderung das Einrichten des Betriebssystems und der Selbst erstellten Software, sowie die Modularisierung der Eingabe. Das System sollte so flexibel wie möglich bedienbar sein. Die Dreh/Switch-Encoder sollen so viele Parameter wie möglich zugänglich machen.. 
+3. Dabei war eine besondere Herausforderung das Einrichten des Betriebssystems und der Selbst erstellten Software, sowie die Modularisierung der Eingabe. Das System sollte so flexibel wie möglich bedienbar sein. Die Dreh/Switch-Encoder sollen so viele Parameter wie möglich zugänglich machen.. 
 
-1. 1. **Umfang des Prototypen**
+1. ##### 5.3 Umfang des Prototypen
 
 Der Umfang des Prototypen beschränkt sich auf ein Proof of Concept. Dabei funktioniert das Laden eines Samples für die Granularsynthese, sowie die Steuerung der wichtigsten Parameter über die Encoder.
 
-1. **EVALUATION**
+#### 6. EVALUATION
 
 Das System wurde unter Anhand verschiedener Aspekte evaluiert. Insbesondere die Unterbrechungsfreie Wiedergabe, sowie die Steuerung der gewünschten Parameter über die vorhandene Hardware wurden betrachtet.
 
 Die Bedienung soll für jemanden, der mit der Funktionsweise Granularer Synthese vertraut ist, zumindest ansatzweise nachvollziehbar und schnell erlernbar sein.
 
-1. 1. **Ziele der Evaluation und Methodik**
+1. ##### 6.1 Ziele der Evaluation und Methodik
 
-Ziel der Evaluation ist vornehmlich festzustellen, ob das System als eigenständiges Hardwaresystem für Granularsynthese funktioniert. 
+2. Ziel der Evaluation ist vornehmlich festzustellen, ob das System als eigenständiges Hardwaresystem für Granularsynthese funktioniert. 
 
-Um festzustellen, ob das System den Anforderungen genügt, werden die Parameter, die zur Steuerung eingerichtet wurden auf in Hinblick auf die Systemperformance (Audio Dropouts) auf ihre Grenzbereiche hin überprüft. Dabei handelt es sich vor allem um Parameter, die die den Umgang mit einzelnen Grains betreffen:
- Grainanzahl, Graingröße, Density, „Polyphonie“
+3. Um festzustellen, ob das System den Anforderungen genügt, werden die Parameter, die zur Steuerung eingerichtet wurden auf in Hinblick auf die Systemperformance (Audio Dropouts) auf ihre Grenzbereiche hin überprüft. Dabei handelt es sich vor allem um Parameter, die die den Umgang mit einzelnen Grains betreffen:
+    Grainanzahl, Graingröße, Density, „Polyphonie“
 
-Darüber hinaus werden weitere Klangformungsmöglichkeiten implementiert, um das System „Livetauglich“ zu machen. Dazu gehören verschiedene Effekte wie bspw. Ein Filter und Reverb.
+4. Darüber hinaus werden weitere Klangformungsmöglichkeiten implementiert, um das System „Livetauglich“ zu machen. Dazu gehören verschiedene Effekte wie bspw. Ein Filter und Reverb.
 
-Je nachdem, worauf Ihre Studie abzielt, können Sie z.B. daran interessiert sein, ob Ihre Technik überhaupt nutzbar ist (d.h., kommen Nutzer damit zurecht oder kommt es häufig zu Fehlbedienungen). Das finden Sie z.B. heraus, wenn Sie Testpersonen mit Ihrem System arbeiten lassen.
+5. Je nachdem, worauf Ihre Studie abzielt, können Sie z.B. daran interessiert sein, ob Ihre Technik überhaupt nutzbar ist (d.h., kommen Nutzer damit zurecht oder kommt es häufig zu Fehlbedienungen). Das finden Sie z.B. heraus, wenn Sie Testpersonen mit Ihrem System arbeiten lassen.
 
-Wollen Sie hingegen nachweisen, dass Ihr System besser ist, als ein bereits existierendes, so können Sie einen Systemvergleich anstellen. 
+6. Wollen Sie hingegen nachweisen, dass Ihr System besser ist, als ein bereits existierendes, so können Sie einen Systemvergleich anstellen. 
 
-1. 1. **Durchführung der Evaluation**
+1. ##### 6.2. Durchführung der Evaluation
 
-Hier beschreiben Sie, wie Sie Ihr System evaluiert haben. Falls Sie eine Datenerhebung (Logging / Fragebogen / Interview) gemacht haben, geben Sie an, was dabei herauskam, z.B. die Anzahl der von einer Testperson gemachten Bedienfehler. Haben Sie mehrere Testpersonen involviert, können Sie auch eine statistische Auswertung durchführen.
+2. Hier beschreiben Sie, wie Sie Ihr System evaluiert haben. Falls Sie eine Datenerhebung (Logging / Fragebogen / Interview) gemacht haben, geben Sie an, was dabei herauskam, z.B. die Anzahl der von einer Testperson gemachten Bedienfehler. Haben Sie mehrere Testpersonen involviert, können Sie auch eine statistische Auswertung durchführen.
 
-Wichtig: hier geht es um die Angabe der objektiven Befunde, Spekulationen, warum ein Befund so oder so ausgefallen ist, haben hier nichts verloren!
+3. Wichtig: hier geht es um die Angabe der objektiven Befunde, Spekulationen, warum ein Befund so oder so ausgefallen ist, haben hier nichts verloren!
 
-1. 1. **Interpretation der Evaluationsergebnisse**
+1. ##### 6.3. Interpretation der Evaluationsergebnisse
 
-Hier können Sie ggf. darüber spekulieren, wie die in der Evaluation gefunden Befunde zu erklären sind und durch welche Änderungen sich ggf. Optimierungen erzielen lassen könnten.
+2. Hier können Sie ggf. darüber spekulieren, wie die in der Evaluation gefunden Befunde zu erklären sind und durch welche Änderungen sich ggf. Optimierungen erzielen lassen könnten.
 
-
-
-1. **ZUSAMMENFASSUNG**
+#### 7. ZUSAMMENFASSUNG
 
 Hier fassen Sie nochmal kurz zusammen, was Sie gemacht haben und welche Erkenntnisse aus Ihrer Arbeit hervorgegangen sind. Es bietet sich eine Gliederung an in die Teilabschnitte „Erzielte Ergebnisse“ und. „Ausblick“.
 
-1. 1. **Erzielte Ergebnisse**
+1. ##### 7.1. Erzielte Ergebnisse
 
-z.B. 
+2. z.B. 
 
-„Die vorliegende Studie beschäftigte sich mit der Fragestellung, inwiefern sich die „<X>-Technologie für die <Y>-Anwendung nutzen lässt. Dazu wurden zunächst für die <Y>-Anwendung wichtige Use Cases definiert, die dann der Entwicklung eines einfachen Prototypen zugrunde gelegt wurden. Der Prototyp besteht im Wesentlichen aus den Komponenten A B und C. Komponente B nutzt dabei eine leicht modifizierte Version der X-Technologie. Die Modifikation besteht aus der Erweiterung von X zu XX.“
+3. „Die vorliegende Studie beschäftigte sich mit der Fragestellung, inwiefern sich die „<X>-Technologie für die <Y>-Anwendung nutzen lässt. Dazu wurden zunächst für die <Y>-Anwendung wichtige Use Cases definiert, die dann der Entwicklung eines einfachen Prototypen zugrunde gelegt wurden. Der Prototyp besteht im Wesentlichen aus den Komponenten A B und C. Komponente B nutzt dabei eine leicht modifizierte Version der X-Technologie. Die Modifikation besteht aus der Erweiterung von X zu XX.“
 
-In einer anschließenden Evaluation wurde der Prototyp hinsichtlich der Kriterien K1 bis Kk untersucht. Als Evaluationsmethode wurde eine Nutzerstudie mit n Testnutzern durchgeführt. Die Studie ergab, dass die erweiterte X-Technik für den Einsatz in einer Y-Anwendung zwar prinzipiell geeignet ist, jedoch noch weiteres Finetuning erforderlich ist.
+4. In einer anschließenden Evaluation wurde der Prototyp hinsichtlich der Kriterien K1 bis Kk untersucht. Als Evaluationsmethode wurde eine Nutzerstudie mit n Testnutzern durchgeführt. Die Studie ergab, dass die erweiterte X-Technik für den Einsatz in einer Y-Anwendung zwar prinzipiell geeignet ist, jedoch noch weiteres Finetuning erforderlich ist.
 
-1. 1. **Erweiterungsmöglichkeiten / Ausblick** 
+1. ##### 7.2. Erweiterungsmöglichkeiten / Ausblick 
 
-Hier beschreiben Sie kurz, welche Verbesserungs- und Erweiterungsmöglichkeiten sinnvoll wären. Sofern Sie schon eine Idee zur Realisierung haben, können Sie diese in einem Satz skizzieren.  
+2. Hier beschreiben Sie kurz, welche Verbesserungs- und Erweiterungsmöglichkeiten sinnvoll wären. Sofern Sie schon eine Idee zur Realisierung haben, können Sie diese in einem Satz skizzieren.  
 
-Da es in der Regel noch sehr viel zu tun gibt, müssen Sie eine Auswahl treffen! Konzentrieren Sie sich auf die unbedingt durchzuführenden bzw. interessantesten Erweiterungen.
+3. Da es in der Regel noch sehr viel zu tun gibt, müssen Sie eine Auswahl treffen! Konzentrieren Sie sich auf die unbedingt durchzuführenden bzw. interessantesten Erweiterungen.
 
-**REFERENZEN**
+#### **REFERENZEN**
 
 1. Implementing Real-Time Granular SynthesisRoss BencinaDraft of 31st August 2001 http://www.rossbencina.com/static/code/granular-synthesis/BencinaAudioAnecdotes310801.pdf
 2. Granular Synthesis - How It Works & Ways To Use It - Simon Price, December 2005 https://www.soundonsound.com/techniques/granular-synthesis
