@@ -20,15 +20,15 @@ codrin.podoleanu@hs-augsburg.de
 
 ## ABSTRACT
 
-Kurze Zusammenfassung worum es geht und welche Ergebnisse erzielt wurden. Das Abstract schreibt man am besten als Letztes, wenn man den Inhalt des Papiers aufgeschrieben hat.
+GrannySynth ist ein Prototyp für ein Hard-/Softwaresystem für Granularsynthese in Echtzeit für Liveperformances und Sounddesign. Er enstand 2020 im Kurs "Interaktion/Programmierung" bei Prof. Dr. Thomas Rist an der Hochschule Augsburg. Eine Videodemonstration des Systems finden Sie hier.
 
- #### Categories and Subject Descriptors
+ #### Klassifizierung und Einordnung
 
 C.3 [SPECIAL-PURPOSE AND APPLICATION-BASED SYSTEMS] *,* H5.5 [SOUND AND MUSIC COMPUTING], [H.5.2](http://www.acm.org/about/class/ccs98-html#H.5.2) [USER INTERFACES]
 
 #### General Terms
 
-Design, Experimentation
+Design, Experimentation, Soundsynthesis
 
 #### Keywords
 
@@ -38,7 +38,7 @@ Granularsynthese, Raspberry Pi, Pure Data, Liveperformance
 
 ##### Problemstellung: Granulare Synthese 
 
-Bei der Erstellung elektronischer Musik kommt es darauf an stets eigene, neue Klänge zu gestalten. Eine sehr vielseitige, mächtige Möglichkeit Klänge zu gestalten und zu Formen it die sogenannte "Granularsynthese". Vor allem in der Improvisation lassen sich mit dieser Syntheseart stark eigenständige, eindrucksvolle Klänge erzeugen.
+Wir interessieren uns für das Feld des Sounddesigns und suchen nach neuen Mitteln für Klanggestaltung. Eine sehr vielseitige Möglichkeit Klänge zu Formen ist die sogenannte "Granularsynthese". Vor allem in der Improvisation lassen sich mit dieser Syntheseart stark eigenständige, eindrucksvolle Klänge erzeugen.
 
 Da es sich um eine digitale Syntheseart handelt, gibt es bereits ein Vielzahl an Software-Synthesizern. Diese eignen sich für die Liveperformance nur bedingt, benötigen sie doch immer einen Rechner mit einer entsprechenden DAW. Vor allem in der Außenwahrnehmung durch Publikum entsteht dabei häufig der Eindruck, dass weniger Live auf der Bühne geschieht, als dass vieles vom Rechner abgespielt wird. Diese Wahrnehmung ist verständlich, sieht es manchmal doch tatsächlich so aus, als würde man seine Mails checken, wenn man angestrengt auf einen Bildschirm sieht. 
 
@@ -191,7 +191,7 @@ Beschreiben Sie hier kurz Ihre Entwicklungsumgebung (Hardware, Betriebssystem, P
 
 1. ##### 5.3 Umfang des Prototypen
 
-Der Umfang des Prototypen beschränkt sich auf ein Proof of Concept. Dabei funktioniert das Laden eines Samples für die Granularsynthese, sowie die Steuerung der wichtigsten Parameter über die Encoder.
+2. Der Umfang des Prototypen beschränkt sich auf ein Proof of Concept. Dabei funktioniert das Laden eines Samples für die Granularsynthese, sowie die Steuerung der wichtigsten Parameter über die Encoder.
 
 #### 6. EVALUATION
 
@@ -206,21 +206,29 @@ Die Bedienung soll für jemanden, der mit der Funktionsweise Granularer Synthese
 3. Um festzustellen, ob das System den Anforderungen genügt, werden die Parameter, die zur Steuerung eingerichtet wurden auf in Hinblick auf die Systemperformance (Audio Dropouts) auf ihre Grenzbereiche hin überprüft. Dabei handelt es sich vor allem um Parameter, die die den Umgang mit einzelnen Grains betreffen:
     Grainanzahl, Graingröße, Density, „Polyphonie“
 
-4. Darüber hinaus werden weitere Klangformungsmöglichkeiten implementiert, um das System „Livetauglich“ zu machen. Dazu gehören verschiedene Effekte wie bspw. Ein Filter und Reverb.
+4. Darüber hinaus werden weitere Klangformungsmöglichkeiten implementiert, um das System „Livetauglich“ zu machen. Dazu gehören verschiedene Effekte wie bspw. ein Filter und Reverb.
 
-5. Je nachdem, worauf Ihre Studie abzielt, können Sie z.B. daran interessiert sein, ob Ihre Technik überhaupt nutzbar ist (d.h., kommen Nutzer damit zurecht oder kommt es häufig zu Fehlbedienungen). Das finden Sie z.B. heraus, wenn Sie Testpersonen mit Ihrem System arbeiten lassen.
+5. Anschließend werden ergebnisoffene Usertests durchgeführt, um bisher unentdeckte Fehler und Probleme  festzustellen. Die User bekommen keine Anweisungen zur Nutzung des Systems und füllen nach einer Testzeit von 30 Minuten einen Fragebogen aus. Die Fragen werden mit einer Bewertung auf einer Skala von 1-10 beantwortet. Folgende Fragen sieht der Fragebogen vor:
 
-6. Wollen Sie hingegen nachweisen, dass Ihr System besser ist, als ein bereits existierendes, so können Sie einen Systemvergleich anstellen. 
+6. - Wie bewerten Sie das visuelle Feedback des GrannySynth?
+   - Wie bewerten Sie die Bedienung des GrannySynth?
+   - Wie bewerten Sie die Klangqualität des GrannySynth?
+   - Wie bewerten Sie die Live-Tauglichkeit des GrannySynth? 
+   - Inwieweit konnten Sie gezielt Klänge nach Ihrer Vorstellung gestalten?
+
+7. Zusätzlich können User in einem "Sonstiges"-Feld frei schriftliche Angaben zu Punkten machen, die Ihnen auffallen.
+
+8. Je nachdem, worauf Ihre Studie abzielt, können Sie z.B. daran interessiert sein, ob Ihre Technik überhaupt nutzbar ist (d.h., kommen Nutzer damit zurecht oder kommt es häufig zu Fehlbedienungen). Das finden Sie z.B. heraus, wenn Sie Testpersonen mit Ihrem System arbeiten lassen.
+
+9. Wollen Sie hingegen nachweisen, dass Ihr System besser ist, als ein bereits existierendes, so können Sie einen Systemvergleich anstellen. 
 
 1. ##### 6.2. Durchführung der Evaluation
 
-2. Hier beschreiben Sie, wie Sie Ihr System evaluiert haben. Falls Sie eine Datenerhebung (Logging / Fragebogen / Interview) gemacht haben, geben Sie an, was dabei herauskam, z.B. die Anzahl der von einer Testperson gemachten Bedienfehler. Haben Sie mehrere Testpersonen involviert, können Sie auch eine statistische Auswertung durchführen.
-
-3. Wichtig: hier geht es um die Angabe der objektiven Befunde, Spekulationen, warum ein Befund so oder so ausgefallen ist, haben hier nichts verloren!
+2. Eine Evaluation des Systems mit mehreren User:innen war in der aktuellen Situation bisher nicht möglich. Die Usertests beschränken sich somit auf die Erfahrungen der Entwickler.
 
 1. ##### 6.3. Interpretation der Evaluationsergebnisse
 
-2. Hier können Sie ggf. darüber spekulieren, wie die in der Evaluation gefunden Befunde zu erklären sind und durch welche Änderungen sich ggf. Optimierungen erzielen lassen könnten.
+2. Mangels objektiv evaluierbarer Ergebnisse  über die Erfahrungen der Entwickler hinaus entfällt eine Interpretation der Evaluationsergebnisse.
 
 #### 7. ZUSAMMENFASSUNG
 
