@@ -274,17 +274,15 @@ Hier fassen Sie nochmal kurz zusammen, was Sie gemacht haben und welche Erkenntn
 
 ##### 7.1. Erzielte Ergebnisse
 
-„Die vorliegende Studie beschäftigte sich mit der Fragestellung, inwiefern sich die „<X>-Technologie für die <Y>-Anwendung nutzen lässt. Dazu wurden zunächst für die <Y>-Anwendung wichtige Use Cases definiert, die dann der Entwicklung eines einfachen Prototypen zugrunde gelegt wurden. Der Prototyp besteht im Wesentlichen aus den Komponenten A B und C. Komponente B nutzt dabei eine leicht modifizierte Version der X-Technologie. Die Modifikation besteht aus der Erweiterung von X zu XX.“
+Wir haben ein Konzept für GrannySynth in Hinblick auf ein flexibles Hybrid-Synthesizer System entwickelt, dass sich durch analoge Bedienung und digitaler Klangerzeugung auszeichnet.
 
-In einer anschließenden Evaluation wurde der Prototyp hinsichtlich der Kriterien K1 bis Kk untersucht. Als Evaluationsmethode wurde eine Nutzerstudie mit n Testnutzern durchgeführt. Die Studie ergab, dass die erweiterte X-Technik für den Einsatz in einer Y-Anwendung zwar prinzipiell geeignet ist, jedoch noch weiteres Finetuning erforderlich ist.
+Wir erstellten einen Pure Data Patch, der Granularsynthese implementiert und OSC-Signale empfängt. Ein Python Programm, dass wir geschrieben haben, verarbeitet den Input und ist für die Kommunikation zwischen den Komponenten verantwortlich.
 
+Wir haben die Hardware in ein Gehäuse verbaut, dass hinsichtlich des Status als Prototyp noch Veränderungen zulässt. Auf unserem Raspberry Pi wurden die Systemkonfigurationen passend eingestellt.
 
+##### 7.2. Erweiterungsmöglichkeiten / Ausblick
 
-##### 7.2. Erweiterungsmöglichkeiten / Ausblick 
-
-2. Hier beschreiben Sie kurz, welche Verbesserungs- und Erweiterungsmöglichkeiten sinnvoll wären. Sofern Sie schon eine Idee zur Realisierung haben, können Sie diese in einem Satz skizzieren.  
-
-3. Da es in der Regel noch sehr viel zu tun gibt, müssen Sie eine Auswahl treffen! Konzentrieren Sie sich auf die unbedingt durchzuführenden bzw. interessantesten Erweiterungen.
+Aus den fehlenden Implementierungen aus **5.3** sind die zusätzlichen Parameter der Effektkette wohl am einfachsten zu implementieren. Außerdem sollte ein config file erstellt werden, dass die Anpassung und Veränderung in Zukunft vereinfachen soll.
 
 #### **Referenzen**
 
