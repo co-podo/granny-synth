@@ -4,23 +4,17 @@ Adrian Ludwig
  Im Sack 11
  86152 Augsburg
  +49 157 71704314
-
 hello@adrianludwig.de
 
-
-
 Codrin Podoleanu
-
-2rd author's affiliation
- 1st line of address
- 2nd line of address
- Telephone number, incl. country code
-
+ Liebigstraße 61
+ 64293 Darmstadt
+ +49 152 52022433
 codrin.podoleanu@hs-augsburg.de
 
 #### Abstract
 
-GrannySynth ist ein Prototyp für ein Hard-/Softwaresystem für Granularsynthese in Echtzeit für Liveperformances und Sounddesign. Er enstand 2020 im Kurs "Interaktion/Programmierung" bei Prof. Dr. Thomas Rist an der Hochschule Augsburg. Eine Videodemonstration des Systems finden Sie hier.
+GrannySynth ist ein Prototyp für ein Hard-/Softwaresystem für Granularsynthese in Echtzeit für Liveperformances und Sounddesign. Er enstand 2020 im Kurs "Interaktion/Programmierung" bei Prof. Dr. Thomas Rist an der Hochschule Augsburg. Eine Videodemonstration des Systems finden Sie [hier](https://vimeo.com/506451315).
 
  #### Klassifizierung und Einordnung
 
@@ -52,40 +46,40 @@ Dieses Paper beschreibt die Erstellung eines Prototypen des Systems "Granny Synt
 
 - Anwendungszenarion
 
-- - Anwendungsfall allgemein
+  - Anwendungsfall allgemein
   - Konkreter Anwendungsfall
 
 - Entwurf des Prototyps
 
-- - Technischer Ansatz
+  - Technischer Ansatz
   - Konzeptueller Aufbau des Prototypen
 
 - Implementierung
 
-- - Hard- und Softwareumgebung
+  - Hard- und Softwareumgebung
   - Kern der Implementierung
   - Umfang des Prototypen
 
 - Evaluation
 
-- - Ziele der Evaluation und Methodik
+  - Ziele der Evaluation und Methodik
   - Durchführung der Evaluation
   - Interpretation der Evaluationsergebnisse
 
 - Zusammenfassung
 
-- - Erzielte Ergebnisse
+  - Erzielte Ergebnisse
   - Erweiterungsmöglchkeiten
 
 #### 2. Verwandte Arbeiten
 
-Wie in der Motivation beschrieben, gibt es bereits eine Vielzahl von Softwarelösungen für Granulare Synthese. Ein Prominentes Beispiel ist der in Ableton Live (Digital Audio Workstation) verfügbare "Granulator" https://www.monolake.de/technology/granulator.html
+Wie in der Motivation beschrieben, gibt es bereits eine Vielzahl von Softwarelösungen für Granulare Synthese. Ein Prominentes Beispiel ist der in Ableton Live (Digital Audio Workstation) verfügbare [Granulator]( https://www.monolake.de/technology/granulator.html)
 
 Diese Implementierung der Granularsynthese besticht durch eine vielzahl von Parametern und eine Verhältnismäßig einfache Bedienbarkeit. Dazu trägt insbesondere das sinnvoll gestaltete Bedieninterface entscheidend bei. 
 
-In der Welt der Hardware finden sich vergleichsweise wenig Implementierungen von brauchbarer Granularsynthese. Am häufigsten noch sind Lösungen im Bereich der Modularen Synthesizersysteme zu finden. Ein prominentes Beispiel hier ist Mutable Instruments "Clouds" Eurorack-Modul. https://mutable-instruments.net/modules/clouds/ Hier besteht das Problem, dass man darauf angewiesen ist, ein entsprechendes Rack mit allen weiteren nötigen Modulen aufzubauen. Das ist aufwändig und vor allem teuer.
+In der Welt der Hardware finden sich vergleichsweise wenig Implementierungen von brauchbarer Granularsynthese. Am häufigsten noch sind Lösungen im Bereich der Modularen Synthesizersysteme zu finden. Ein prominentes Beispiel hier ist [Mutable Instruments Clouds Eurorack-Modul](https://mutable-instruments.net/modules/clouds/ ). Hier besteht das Problem, dass man darauf angewiesen ist, ein entsprechendes Rack mit allen weiteren nötigen Modulen aufzubauen. Das ist aufwändig und vor allem teuer.
 
-Ein System, das aufgrund seines Aufbaus viele Arten der Synthese zulässt, indem es auf die Open Source Software "Pure Data" zurückgreift, ist Critter and Guitaris "Organelle". https://www.critterandguitari.com/organelle Dabei kommt es auf die Community an, die neue Patches auch frei zur Verfügung stellen kann. Dieses System funktioniert sehr gut, ist aber Aufgrund kleiner Auflagen eher teuer.
+Ein System, das aufgrund seines Aufbaus viele Arten der Synthese zulässt, indem es auf die Open Source Software "Pure Data" zurückgreift, ist [Critter and Guitaris Organelle](https://www.critterandguitari.com/organelle). Dabei kommt es auf die Community an, die neue Patches auch frei zur Verfügung stellen kann. Dieses System funktioniert sehr gut, ist aber Aufgrund kleiner Auflagen eher teuer.
 
 Aufgrund dieser vorhergehenden Arbeiten soll mit "Granny Synth" eine Lösung für entscheidende Probleme der genannten Beispiele geschaffen werden. 
 
@@ -97,23 +91,23 @@ Als Basis für das System soll - wie bei Critter and Guitaris "Organelle" ein Ra
 
 ##### 3.1 Portabler Granularsynthesizer
 
-2. Entwicklung eines portablen, preiswerten Granularsynthesizers. Nutzer:innen sollen mit dem Gerät ein          flexibles,  Portables Gerät für die Liveanwendung von Granularsynthese zur Hand haben. 
+Entwicklung eines portablen, preiswerten Granularsynthesizers. Nutzer:innen sollen mit dem Gerät ein flexibles, portables Gerät für die Liveanwendung von Granularsynthese zur Hand haben. 
 
 ##### 3.2 Definition der Use Cases
 
-2. Die wichtigsten Uses Cases werden im Folgenden erläutert.
+Die wichtigsten Uses Cases werden im Folgenden erläutert.
 
 ###### 	3.2.1 Hardwaresystem für Granularsynthese
 
-Ein:e Nutzer:in benutzt das System um einen Granularen Synthesizer zu steuern. Dafür werden die eingesetzten Hardwarekomponenten zur Kommunikation zwischen Akteur und Hardwaresystem genutzt. 
+Ein:e Nutzer:in benutzt das System um einen Granularen Synthesizer zu steuern. Dafür werden die eingesetzten Hardwarekomponenten zur Kommunikation zwischen Akteur:in und Hardwaresystem genutzt. 
   - User dreht Encoder im Uhrzeigersinn: 
-       nkrement eines Parameterwertes
+       Inkrement eines Parameterwertes
 
   - User dreht Encoder gegen Uhrzeigersinn: 
-       ekrement einesParameterwertes
+       Dekrement einesParameterwertes
 
   - User drückt Encoder nach unten: 
-       odus des jeweiligen Encoders wird ausgewählt
+       Modus des jeweiligen Encoders wird ausgewählt
 
 ###### 3.2.2 Modulares Hardwaresystem zur Bedienung von Pure Data 
 
@@ -123,16 +117,14 @@ Ein:e Nutzer:in definiert ein eigenes Pure Data Patch, das über die vorhandene 
 
 ##### 4.1 Technischer Ansatz
 
-2. Das Gerät basiert auf der Hardwareseite aus einem Raspberry-pi 3, Fünf Ky-040 Drehencodern, sowie einem 20x4 Zeichen LCD Display. Die Komponenten befinden sich in einem einfachen, aus Holz gefertigten Gehäuse.
-    Zur Verarbeitung der IO-Befehle verwenden wir python und die zum Raspberry korrespondierende python Library RPi.GPIO. 
-    Als System für die Granularsynthese verwendet das System die Open Source Software „Pure Data“. 
-    Die Kommunikation zwischen GPIO und Pure Data erfolgt über das OSC-Protokoll.
+Das Gerät basiert auf der Hardwareseite aus einem Raspberry-pi 3, Fünf Ky-040 Drehencodern, sowie einem 20x4 Zeichen LCD Display. Die Komponenten befinden sich in einem einfachen, aus Holz gefertigten Gehäuse.
+Zur Verarbeitung der IO-Befehle verwenden wir python und die zum Raspberry korrespondierende python Library RPi.GPIO. 
+Als System für die Granularsynthese verwendet das System die Open Source Software „Pure Data“. 
+Die Kommunikation zwischen GPIO und Pure Data erfolgt über das OSC-Protokoll.
 
 ##### 4.2 **Konzeptueller Aufbau des Prototypen**
 
-1. Das System besteht aus mehreren, miteinander kommunizierenden Untersystemen. 
-
-2. Beschreiben Sie hier aus welchen Systemkomponenten Ihr Prototyp besteht, welche Schnittstellen Sie zwischen den Komponenten festlegen. Evtl. ist es sinnvoll, weitere Unterpunkte zu bilden, etwa zur Beschreibung eines „Servers“ und eines „Clients“ oder zwischen „Sensorik“ und „Steuerung“ usw., je nachdem, welche Komponenten Ihr Konzept umfasst.
+Das System besteht aus mehreren, miteinander kommunizierenden Untersystemen. 
 
 ###### 4.2.1 GPIO - Server
 
@@ -149,11 +141,7 @@ In der Umgebung des Klangerzeugers empfängt ein Server die über OSC Übertrage
 ###### 4.2.4. Klangerzeuger/Granularer Synthesizer
 
 Die Audioverarbeitung erfolgt über eine eigene Sofware, in diesem Fall „Pure Data“.
-Innerhalb der Software wird ein „Patch“ für die Granularsynthese angefertigt. Die Steuerung erfolgt über OSC. Das Programm steuert auch die Audioausgabe auf dem Gerät.* 
-
-Beachten Sie, in diesem Abschnitt sollten Sie weitgehend von Implementierungsdetails abstrahieren. Diese bündeln Sie in einem separaten Abschnitt
-
-
+Innerhalb der Software wird ein „Patch“ für die Granularsynthese angefertigt. Die Steuerung erfolgt über OSC. Das Programm steuert auch die Audioausgabe auf dem Gerät.
 
 #### 5. Implementierung
 
@@ -168,13 +156,13 @@ Beachten Sie, in diesem Abschnitt sollten Sie weitgehend von Implementierungsdet
 - 1 x Breakout-Adapter Rasperry pi
 - 1 x Raspberrry Pi 3 B
 
-Auf dem Raspberry Pi läuft das Debian-basierte Linux-Betriebssystem Raspbian. Als Sprache für die IO-Kommunikation wird Python genutzt. Folgende Libraries werden dafür verwendet:
+Auf dem Raspberry Pi läuft das Debian-basierte Linux-Betriebssystem Raspbian. Als Sprache für die IO-Kommunikation wird Python genutzt. Die Signalverarbeitung, sowie sämtliche genutzte Software laufen auf dem Raspberry Pi. Folgende Software wird verwendet:
 
 ###### Software
 
-**Pure data**
+**Pure Data**
 
-Die Granularsynthese wurde in *Pure Data* umgesetzt. Pure data ist eine visuelle Programmiersprache, die Musiker, Künstlern und Forschern die Möglichkeit gibt Software zu entwickeln, ohne Code zu schreiben. Stattdessen werden Patches (Programme in Pure Data) durch das platzieren und verbinden von Objekten ersellt.
+Die Granularsynthese wurde in *Pure Data* umgesetzt. Pure data ist eine visuelle Programmiersprache, die Musiker:innen, Künstler:innen und Forscher:innen die Möglichkeit gibt Software zu entwickeln, ohne Code zu schreiben. Stattdessen werden Patches (Programme in Pure Data) durch das platzieren und verbinden von Objekten ersellt.
 
 Wir haben die Pure Data Distribution *pd-L2ork* alias *Purr-data* verwedent, die ein verbessertes GUI und eine Vielzahl von nützlichen Bibliotheken enthält.
 
@@ -191,12 +179,11 @@ Folgende Bibliotheken haben wir benutzt:
 - [python-osc](https://pypi.org/project/python-osc/)
 - sowie *math*, *threading*, *argparse* und *os* aus der Standardbibliothek
 
-Beschreiben Sie hier kurz Ihre Entwicklungsumgebung (Hardware, Betriebssystem, Programmiersprachen / Bibliotheken, eingesetzte Tools etc.). Evtl. können Sie hier auch noch auf die Entwicklungsmethode eingehen, etwa, wenn Sie verschiedene Testaufbauten gemacht haben, die letztlich zum finalen Prototypen geführt haben.
-
 ##### 5.2  Kern der Implementierung
 
-1. Ein großer Teil der Arbeit war die Anfertigung des Pure Data Patches für die Granularsynthese, sowie die Kommunikation zwischen GPIO des Raspberry Pi und Pure Data.
-2. Dabei war eine besondere Herausforderung das Einrichten des Betriebssystems und der Selbst erstellten Software, sowie die Modularisierung der Eingabe. Das System sollte so flexibel wie möglich bedienbar sein. Die Dreh/Switch-Encoder sollen so viele Parameter wie möglich zugänglich machen.. 
+Ein großer Teil der Arbeit war die Anfertigung des Pure Data Patches für die Granularsynthese, sowie die Kommunikation zwischen GPIO des Raspberry Pi und Pure Data.
+
+Dabei war eine besondere Herausforderung das Einrichten des Betriebssystems und der Selbst erstellten Software, sowie die Modularisierung der Eingabe. Das System sollte so flexibel wie möglich bedienbar sein. Die Dreh/Switch-Encoder sollen so viele Parameter wie möglich zugänglich machen.
 
 Softwareseitig ist der funktionelle Kern von GrannySynth die Implementierung der Granularsynthese als Pure Data Patch.
 
@@ -210,15 +197,25 @@ Im Haupt-Patch *granny-synth* wird das Audiosample geladen, Parameter initialisi
 
 ##### 5.3 Umfang des Prototypen
 
-1. Der Umfang des Prototypen beschränkt sich auf ein Proof of Concept. Dabei funktioniert das Laden eines Samples für die Granularsynthese, sowie die Steuerung der wichtigsten Parameter über die Encoder.
+Der Umfang des Prototypen beschränkt sich auf ein Proof of Concept. Dabei funktioniert das Laden eines Samples für die Granularsynthese, sowie die Steuerung der wichtigsten Parameter über die Hardware.
+
+![DSCF9162](GrannySynth_Documentation.assets/DSCF9162.JPG)
+
+![IMG_5106](GrannySynth_Documentation.assets/IMG_5106.JPG)
+
+
+
+![DSCF9163](GrannySynth_Documentation.assets/DSCF9163.JPG)
+
+![DSCF9165](GrannySynth_Documentation.assets/DSCF9165.JPG)
 
 **5.3.1 Implementiert**
 
-Die grunsätzliche Funktionalität ist vorhanden. Die Drehregler können bedient werden, um damit Parameter in Pure Data Patch zu verändern. Durch einen fünften Drehregler kann zwischen mehreren Modi gewechselt werden. Es wurden zwei Modi (Parameter der Granularsynthese und Settings) implementiert. Das Display liefert visuelles Feedback in echtzeit.
+Die grundsätzliche Funktionalität ist vorhanden. Die Drehregler können bedient werden, um damit Parameter in Pure Data Patch zu verändern. Durch einen fünften Drehregler kann zwischen mehreren Modi gewechselt werden. Es wurden zwei Modi (Parameter der Granularsynthese und Settings) implementiert. Das Display liefert visuelles Feedback in Echtzeit.
 
 **5.3.2 Nicht Implementiert**
 
-Das wohl größte fehlende Feature ist die Ansteuerung des Synthesizers durch MIDI ähnlich wie im *Granulator II* von Monolake
+Das wohl größte fehlende Feature ist die Ansteuerung des Synthesizers durch MIDI ähnlich wie im *Granulator II* von Monolake.
 
 Eine Effekt-Kette mit Filter, Delay und Reverb fehlt auch.
 
@@ -226,43 +223,35 @@ Außerdem fehlen LFOs als Modulationsquellen für die Parameter der Granularsynt
 
 #### 6. Evaluation
 
-
-
 ##### 6.1 Ziele der Evaluation und Methodik
 
-Ziel der Evualtion ist feszustellen, ob die Bedienung, ein vorhandenes Grundverständnis der Granularsynthese vorrausgesetzt, intuitiv und leicht-erlernbar gestaltet ist. Aber auch ist die technische Leistungsfähigkeit des GrannySynth soll evaluiert werden.
+Ziel der Evaluation ist feszustellen, ob die Bedienung - ein vorhandenes Grundverständnis der Granularsynthese vorrausgesetzt - intuitiv und leicht erlernbar gestaltet ist. Darüber hinaus wird die technische Leistungsfähigkeit des GrannySynth soll evaluiert werden.
 
-Als Gesamtziel der Evaluation ist vornehmlich festzustellen, ob das System als eigenständiges Hardwaresystem für Granularsynthese funktioniert. 
+Das Gesamtziel der Evaluation ist vornehmlich festzustellen, ob das System als eigenständiges Hardwaresystem für Granularsynthese funktioniert.
 
-Die Leistungsfähigkeit kann durch einen schlichten Lasttest erfolgen. Dazu werden die implementierten Parameter auf bzgl. der Systemperformance auf ihre Grenzbereiche eingestellt. Sollten audio Artefakte wie Klick auftauchen, ist GrannySynth überlastet.
+Die Leistungsfähigkeit kann durch einen einfachen Lasttest erfolgen. Dazu werden die implementierten Parameter bezüglich der Systemperformance auf ihre Grenzbereiche eingestellt. Treten audio Artefakte wie hörbare Klicks auf, ist GrannySynth überlastet.
 
-Dazu sollten eine Vielzahl von Permutationen der Werte von Grainlänge, Graingröße, Graindichte sowie Grainanzahl getestet werden.
+Dazu werden eine Vielzahl von Permutationen der Werte von Grainlänge, Graingröße, Graindichte sowie Grainanzahl getestet.
 
-(Darüber hinaus werden weitere Klangformungsmöglichkeiten implementiert, um das System „Livetauglich“ zu machen. Dazu gehören verschiedene Effekte wie bspw. ein Filter und Reverb.)
-
-Anschließend werden Usertests durchgeführt, um bisher unentdeckte Fehler und Probleme festzustellen. Die User bekommen keine Anweisungen zur Nutzung (z. B. "erstelle aus diesem Sample möglichst vielfältige Varianten") des Systems und füllen nach einer Testzeit von 30 Minuten einen Fragebogen aus. Die Fragen werden mit einer Bewertung auf einer Skala von 1-10 beantwortet. Folgende Fragen sieht der Fragebogen vor:
+Anschließend werden Usertests durchgeführt, um bisher unentdeckte Fehler und Probleme festzustellen. Die User bekommen keine Anweisungen zur Nutzung des Systems und füllen nach einer Testzeit von 30 Minuten einen Fragebogen aus. Die Fragen werden mit einer Bewertung auf einer Skala von 1-10 beantwortet. Folgende Fragen sehen wir vor:
 
 - Wie bewerten Sie das visuelle Feedback des GrannySynth?
 - Wie bewerten Sie die Bedienung des GrannySynth?
 - Wie bewerten Sie die Klangqualität des GrannySynth?
-- Wie bewerten Sie die Live-Tauglichkeit des GrannySynth? 
+- Wie bewerten Sie die Gehäusequalität des GrannySynth? 
+- Wie viel Spaß hatten Sie beim Test des GrannySynth?
+- Wie inspiriert fühlen Sie sich nach der Nutzung des GrannySynth?
 - Inwieweit konnten Sie gezielt Klänge nach Ihrer Vorstellung gestalten?
 
 Zusätzlich können User in einem "Sonstiges"-Feld frei schriftliche Angaben zu Punkten machen, die Ihnen auffallen.
 
-(Je nachdem, worauf Ihre Studie abzielt, können Sie z.B. daran interessiert sein, ob Ihre Technik überhaupt nutzbar ist (d.h., kommen Nutzer damit zurecht oder kommt es häufig zu Fehlbedienungen). Das finden Sie z.B. heraus, wenn Sie Testpersonen mit Ihrem System arbeiten lassen.
-
-Wollen Sie hingegen nachweisen, dass Ihr System besser ist, als ein bereits existierendes, so können Sie einen Systemvergleich anstellen. )
-
 ##### 6.2. Durchführung der Evaluation
 
-Eine Evaluation des Systems mit mehreren User:innen war in der aktuellen Situation bisher nicht möglich. Die Usertests beschränken sich somit auf die Erfahrungen der Entwickler.
+Beim Lasttest des GrannySynth ist festzustellen, dass eine Grainanzahl über 10 zu Artefakten führt. Unterhalb dieser Grenze funktioniert das System wie gewünscht.
+
+Die Evaluation über Usertests des Systems mit mehreren Usern war in der aktuellen Situation bisher nicht möglich. Die Usertests beschränken sich somit auf die Erfahrungen der Entwickler. 
 
 ##### 6.3. Interpretation der Evaluationsergebnisse
-
-Mangels objektiv evaluierbarer Ergebnisse  über die Erfahrungen der Entwickler hinaus entfällt eine Interpretation der Evaluationsergebnisse.
-
-Beim Lasttest des GrannySynth ist festzustellen, dass eine Grainanzahl über 10 zu Artefakten führt.
 
 Die doch sehr beschränkte Grainanzahl ist wohl auf bestimmte Rechnungen im *grain* Subpatch zurückzuführen, die die Leistung bei einer höheren Anzahl von Grains strapaziert.
 
@@ -270,21 +259,17 @@ Es sollten alle unnötigen Rechnungen entfernt oder ausgelagert werden.
 
 #### 7.Zusammenfassung
 
-Hier fassen Sie nochmal kurz zusammen, was Sie gemacht haben und welche Erkenntnisse aus Ihrer Arbeit hervorgegangen sind. Es bietet sich eine Gliederung an in die Teilabschnitte „Erzielte Ergebnisse“ und. „Ausblick“.
-
 ##### 7.1. Erzielte Ergebnisse
 
-„Die vorliegende Studie beschäftigte sich mit der Fragestellung, inwiefern sich die „<X>-Technologie für die <Y>-Anwendung nutzen lässt. Dazu wurden zunächst für die <Y>-Anwendung wichtige Use Cases definiert, die dann der Entwicklung eines einfachen Prototypen zugrunde gelegt wurden. Der Prototyp besteht im Wesentlichen aus den Komponenten A B und C. Komponente B nutzt dabei eine leicht modifizierte Version der X-Technologie. Die Modifikation besteht aus der Erweiterung von X zu XX.“
+Wir haben ein Konzept für GrannySynth in Hinblick auf ein flexibles Hybrid-Synthesizer System entwickelt, dass sich durch analoge Bedienung und digitaler Klangerzeugung auszeichnet.
 
-In einer anschließenden Evaluation wurde der Prototyp hinsichtlich der Kriterien K1 bis Kk untersucht. Als Evaluationsmethode wurde eine Nutzerstudie mit n Testnutzern durchgeführt. Die Studie ergab, dass die erweiterte X-Technik für den Einsatz in einer Y-Anwendung zwar prinzipiell geeignet ist, jedoch noch weiteres Finetuning erforderlich ist.
+Wir erstellten einen Pure Data Patch, der Granularsynthese implementiert und OSC-Signale empfängt. Ein Python Programm, dass wir geschrieben haben, verarbeitet den Input und ist für die Kommunikation zwischen den Komponenten verantwortlich.
 
-
+Wir haben die Hardware in ein Gehäuse verbaut, dass hinsichtlich des Status als Prototyp noch Veränderungen zulässt. Auf unserem Raspberry Pi wurden die Systemkonfigurationen passend eingestellt.
 
 ##### 7.2. Erweiterungsmöglichkeiten / Ausblick 
 
-2. Hier beschreiben Sie kurz, welche Verbesserungs- und Erweiterungsmöglichkeiten sinnvoll wären. Sofern Sie schon eine Idee zur Realisierung haben, können Sie diese in einem Satz skizzieren.  
-
-3. Da es in der Regel noch sehr viel zu tun gibt, müssen Sie eine Auswahl treffen! Konzentrieren Sie sich auf die unbedingt durchzuführenden bzw. interessantesten Erweiterungen.
+Aus den fehlenden Implementierungen aus **5.3** sind die zusätzlichen Parameter der Effektkette wohl am einfachsten zu implementieren. Außerdem sollte ein config file erstellt werden, dass die Anpassung und Veränderung in Zukunft vereinfachen soll.
 
 #### **Referenzen**
 
