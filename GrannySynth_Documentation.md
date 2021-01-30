@@ -1,3 +1,5 @@
+
+
 # Granny Synth
 
 Adrian Ludwig
@@ -189,7 +191,7 @@ Softwareseitig ist der funktionelle Kern von GrannySynth die Implementierung der
 
 Der Subpatch *grain* beinhaltet die Referenz zum geladenen Audiosample sowie die Funktionalität das Sample zu lesen. Welcher Teil des Samples und wie schnell es gelesen wird, hängt von Variablen ab, die der Subpatch als Eingangsparameter bekommt.
 
-<img src="assets/image-20210130161842493.png" alt="image-20210130161842493" style="zoom:50%;" />
+<img src="assets/image-20210130161842493.png" alt="image-20210130161842493" style="zoom:40%;" />
 
 Im Haupt-Patch *granny-synth* wird das Audiosample geladen, Parameter initialisiert sowie die OSC-Nachrichten, die die Parameterveränderungen beinhalten, empfangen und gespeichert. Der Patch liest das Sample kontinuierlich durch. Die gescannte Position des Samples, sowie die Parameter Länge und Tonhöhe, werden an die *grain* Objekte weitergeben, wenn ein Triggersignal gegeben wird. Dies hängt vom Parameter *Dichte* ab, der bestimmt wie oft ein neues Grain gestartet wird (es handelt sich hier einfach um die Frequenz eines Oszillators, der bei jeder Phase das Triggersignal gibt). Schließlich wird der Signalausgabe aller Grains gemischt und am Endgerät ausgegeben.
 
@@ -199,9 +201,9 @@ Im Haupt-Patch *granny-synth* wird das Audiosample geladen, Parameter initialisi
 
 Der Umfang des Prototypen beschränkt sich auf ein Proof of Concept. Dabei funktioniert das Laden eines Samples für die Granularsynthese, sowie die Steuerung der wichtigsten Parameter über die Hardware.
 
-![DSCF9162](GrannySynth_Documentation.assets/DSCF9162.JPG)
+<img src="GrannySynth_Documentation.assets/DSCF9162.JPG" alt="DSCF9162" style="zoom:30%;" />
 
-![IMG_5106](GrannySynth_Documentation.assets/IMG_5106.JPG)
+<img src="GrannySynth_Documentation.assets/IMG_5106.JPG" alt="IMG_5106" style="zoom:33%;" />
 
 
 
@@ -268,6 +270,12 @@ Wir erstellten einen Pure Data Patch, der Granularsynthese implementiert und OSC
 Wir haben die Hardware in ein Gehäuse verbaut, dass hinsichtlich des Status als Prototyp noch Veränderungen zulässt. Auf unserem Raspberry Pi wurden die Systemkonfigurationen passend eingestellt.
 
 ##### 7.2. Erweiterungsmöglichkeiten / Ausblick 
+
+Wir erstellten einen Pure Data Patch, der Granularsynthese implementiert und OSC-Signale empfängt. Ein Python Programm, dass wir geschrieben haben, verarbeitet den Input und ist für die Kommunikation zwischen den Komponenten verantwortlich.
+
+Wir haben die Hardware in ein Gehäuse verbaut, dass hinsichtlich des Status als Prototyp noch Veränderungen zulässt. Auf unserem Raspberry Pi wurden die Systemkonfigurationen passend eingestellt.
+
+##### 7.2. Erweiterungsmöglichkeiten / Ausblick
 
 Aus den fehlenden Implementierungen aus **5.3** sind die zusätzlichen Parameter der Effektkette wohl am einfachsten zu implementieren. Außerdem sollte ein config file erstellt werden, dass die Anpassung und Veränderung in Zukunft vereinfachen soll.
 
